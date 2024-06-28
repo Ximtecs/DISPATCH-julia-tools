@@ -264,3 +264,67 @@ function load_patches_var(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{In
     return all_data
 end
 #--------------------------------------------------------------------------------
+
+
+
+#---------------- load multiple variables for a single patch ----------------
+function load_patch_vars(Snapshot_meta::Snapshot_metadata, patch_ID::Int, vars::Vector{String})
+    patch_size = get_integer_patch_size(Snapshot_meta)
+    # Find the index of the patch with the given ID
+    index = findfirst(patch -> patch.ID == patch_ID, Snapshot_meta.PATCHES)
+
+    NV = Snapshot_meta.SNAPSHOT.NV
+    IDX = Snapshot_meta.IDX
+
+    #------ indices of the variables -------------------------
+    ivs = [get_idx_value(IDX, var) for var in vars]
+    #----------------------------------------------------
+
+    #----- size of each patch -------------------------
+    total_size, total_size_in_bytes = get_patch_size(Snapshot_meta)
+    #----- size of each variable -------------------------
+    total_var_size, total_var_size_in_bytes = (Int(total_size / NV), Int(total_size_in_bytes / NV))
+    #----------------------------------------------------------------
+
+    data_file = Snapshot_meta.PATCHES[index].DATA_FILE
+
+    #----------------- initialize the data array -------------------------    
+    all_var_data = Dict{String, Array{Float32}}()
+    for var in vars
+        all_var_data[var] = Vector{Float32}(undef, total_var_size)
+    end
+    #---------------------------------------------------------------------
+
+    # Sort the ivs and get the sorted variables
+    sorted_iv_indices = sortperm(ivs)
+    sorted_ivs = ivs[sorted_iv_indices]
+    sorted_vars = vars[sorted_iv_indices]
+
+    # Calculate the differences between the sorted ivs
+    iv_diff = [sorted_ivs[1] - 1; diff(sorted_ivs)]
+
+    f = open(data_file, "r")
+    # Move pointer to the start of the data for the patch
+    if index > 1 
+        seek(f, position(f) + total_size_in_bytes * (index - 1))
+    end
+
+    for i in 1:length(sorted_vars)
+        var = sorted_vars[i]
+        iv = sorted_ivs[i]
+        var_data = all_var_data[var]
+
+        # Move pointer to the start of the data for the variable
+        if iv_diff[i] > 0
+            seek(f, position(f) + total_var_size_in_bytes * iv_diff[i])
+        end
+
+        # Read the data for the single variable
+        read!(f, var_data)
+        all_var_data[var] = reshape(var_data, patch_size...)
+    end
+    close(f)
+
+    return all_var_data
+end
+#--------------------------------------------------------------------------------
