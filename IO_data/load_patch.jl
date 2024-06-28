@@ -36,16 +36,17 @@ end
 #--------------------------------------------------------------------------------
 
 
-#----------------- Load all varialbes for a single patch ----------------
-function load_patches_data(Snapshot_meta :: Snapshot_metadata, patch_IDs::Vector{Int})
+#----------------- Load all variables for multiple patches ----------------
+function load_patches_data(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{Int})
+
+    NV = Snapshot_meta.SNAPSHOT.NV
 
     #-------------- If only 1 ID is given, just use load_patch_data function ----------------
     if length(patch_IDs) == 1
         patch_data = load_patch_data(Snapshot_meta, patch_IDs[1])
-        return [patch_data]
+        return reshape(patch_data, size(patch_data)..., NV, 1)
     end
     #--------------------------------------------------------------------------------------------
-
 
     #----------- find data position index for each patch ----------------
     indices = [findfirst(patch -> patch.ID == patch_ID, Snapshot_meta.PATCHES) for patch_ID in patch_IDs]
@@ -53,46 +54,38 @@ function load_patches_data(Snapshot_meta :: Snapshot_metadata, patch_IDs::Vector
     total_size, total_size_in_bytes = get_patch_size(Snapshot_meta)
     
     #----------------- initialize the data array -------------------------    
-    all_data = []
+    patch_size = get_integer_patch_size(Snapshot_meta)
+    all_data = Array{Float32}(undef, patch_size..., NV, length(patch_IDs))
     #---------------------------------------------------------------------
 
     #---------- if patches have different data files load them each individually ------------
     data_files = [Snapshot_meta.PATCHES[index].DATA_FILE for index in indices]
     if length(unique(data_files)) > 1
         @warn "Data file different - uses non-optimized load_patches_data function"
-        for patch_ID in patch_IDs
+        for (i, patch_ID) in enumerate(patch_IDs)
             patch_data = load_patch_data(Snapshot_meta, patch_ID)
-            push!(all_data, patch_data)
+            all_data[:,:,:,:, i] = patch_data
         end
 
         return all_data
     end
     #--------------------------------------------------------------------------------------------
 
-
-    #------- If patches have same data file laod them all together -------------------
+    #------- If patches have the same data file load them all together -------------------
     #        Here we only have to open the file once and read all the patches
 
-    #----------------------------------------------------------------------
-    patch_size = get_integer_patch_size(Snapshot_meta)
-
-    #-------------- Sort the indices in acesending order ----------------
+    #-------------- Sort the indices in ascending order ----------------
     sorted_indices = sortperm(indices)
     indices = indices[sorted_indices]
     #--------------------------------------------------------------------
 
     #------------ find the difference between the indices ----------------
     #            This is used to move the pointer in the file
-    index_diff = zeros(Int, length(indices))
-    index_diff[1] = indices[1] - 1.
-    for i in 2:length(indices)
-        index_diff[i] = indices[i] - indices[i-1]
-    end
+    index_diff = [indices[1]; diff(indices)]
     #---------------------------------------------------------------------
 
-    
     data_file = data_files[1]
-    f = open(data_file,"r")
+    f = open(data_file, "r")
     for i in 1:length(indices)
         data = Vector{Float32}(undef, total_size)
         if (index_diff[i] - 1 > 0)
@@ -103,15 +96,14 @@ function load_patches_data(Snapshot_meta :: Snapshot_metadata, patch_IDs::Vector
         #------------ read the data from the file ----------------
         read!(f, data)
         #----------------------------------------------------------------
-        data = reshape(data, patch_size..., Snapshot_meta.SNAPSHOT.NV)
-        push!(all_data, data)
-
+        patch_data = reshape(data, patch_size..., NV)
+        all_data[:,:,:,:, i] = patch_data
     end
     close(f)
     #--------------------------------------------
 
     #---------- to get the correct order of the patches ----------------
-    all_data = all_data[sorted_indices]
+    all_data = all_data[:,:,:,:, sorted_indices]
     #-------------------------------------------------------------------
 
     return all_data
@@ -168,7 +160,7 @@ function load_patches_var(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{In
     #-------------- If only 1 ID is given, just use load_patch_var function ----------------
     if length(patch_IDs) == 1
         var_data = load_patch_var(Snapshot_meta, patch_IDs[1], var)
-        return [var_data]
+        return reshape(var_data, size(var_data)..., 1)
     end
     #--------------------------------------------------------------------------------------------
 
@@ -186,20 +178,21 @@ function load_patches_var(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{In
     #----- size of each patch -------------------------
     total_size, total_size_in_bytes = get_patch_size(Snapshot_meta)
     #----- size of each variable -------------------------
-    total_var_size, total_var_size_in_bytes = (Int(total_size / NV) , Int(total_size_in_bytes / NV))
+    total_var_size, total_var_size_in_bytes = (Int(total_size / NV), Int(total_size_in_bytes / NV))
     #----------------------------------------------------------------
 
     #----------------- initialize the data array -------------------------    
-    all_data = []
+    patch_size = get_integer_patch_size(Snapshot_meta)
+    all_data = Array{Float32}(undef, patch_size..., length(patch_IDs))
     #---------------------------------------------------------------------
 
     #---------- if patches have different data files load them each individually ------------
     data_files = [Snapshot_meta.PATCHES[index].DATA_FILE for index in indices]
     if length(unique(data_files)) > 1
         @warn "Data file different - uses non-optimized load_patches_var function"
-        for patch_ID in patch_IDs
+        for (i, patch_ID) in enumerate(patch_IDs)
             var_data = load_patch_var(Snapshot_meta, patch_ID, var)
-            push!(all_data, var_data)
+            all_data[:, :, :, i] = var_data
         end
 
         return all_data
@@ -209,9 +202,6 @@ function load_patches_var(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{In
     #------- If patches have same data file load them all together -------------------
     #        Here we only have to open the file once and read all the patches
 
-    #----------------------------------------------------------------------
-    patch_size = get_integer_patch_size(Snapshot_meta)
-
     #-------------- Sort the indices in ascending order ----------------
     sorted_indices = sortperm(indices)
     indices = indices[sorted_indices]
@@ -219,11 +209,7 @@ function load_patches_var(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{In
 
     #------------ find the difference between the indices ----------------
     #            This is used to move the pointer in the file
-    index_diff = zeros(Int, length(indices))
-    index_diff[1] = indices[1] - 1
-    for i in 2:length(indices)
-        index_diff[i] = indices[i] - indices[i-1]
-    end
+    index_diff = [indices[1]; diff(indices)]
     #---------------------------------------------------------------------
 
     data_file = data_files[1]
@@ -243,28 +229,25 @@ function load_patches_var(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{In
         # Read the data for the single variable
         read!(f, var_data)
 
-
         #-------- move pointer to the start of the next patch ----------------
         if iv < NV
             seek(f, position(f) + total_var_size_in_bytes * (NV - iv))
         end 
         #----------------------------------------------------------------
 
-
         var_data = reshape(var_data, patch_size...)
-        push!(all_data, var_data)
+        all_data[:, :, :, i] = var_data
     end
     close(f)
     #--------------------------------------------
 
     #---------- to get the correct order of the patches ----------------
-    all_data = all_data[sorted_indices]
+    all_data = all_data[:, :, :, sorted_indices]
     #-------------------------------------------------------------------
 
     return all_data
 end
 #--------------------------------------------------------------------------------
-
 
 
 #---------------- load multiple variables for a single patch ----------------
