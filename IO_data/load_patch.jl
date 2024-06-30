@@ -5,10 +5,8 @@ include("../misc/IDX_conversing.jl")
 #---------- Functions to get information from a single patch or an array of patches from a single snapshot -------------
 
 
-
-
 #----------------- Load all varialbes for a single patch ----------------
-function load_patch_data(Snapshot_meta :: Snapshot_metadata, patch_ID :: Int)
+function load_patch(Snapshot_meta :: Snapshot_metadata, patch_ID :: Int)
 
     patch_size = get_integer_patch_size(Snapshot_meta)
     #---------- find the index of the patch with the given ID ----------------
@@ -37,7 +35,7 @@ end
 
 
 #----------------- Load all variables for multiple patches ----------------
-function load_patches_data(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{Int})
+function load_patch(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{Int})
 
     NV = Snapshot_meta.SNAPSHOT.NV
 
@@ -112,7 +110,7 @@ end
 
 
 #---------------- load a single variable for a single patch ----------------
-function load_patch_var(Snapshot_meta::Snapshot_metadata, patch_ID::Int, var :: String)
+function load_patch(Snapshot_meta::Snapshot_metadata, patch_ID::Int, var :: String)
     patch_size = get_integer_patch_size(Snapshot_meta)
     # Find the index of the patch with the given ID
     index = findfirst(patch -> patch.ID == patch_ID, Snapshot_meta.PATCHES)
@@ -155,7 +153,7 @@ end
 
 
 #---------------- load a single variable for multiple patches ----------------
-function load_patches_var(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{Int}, var::String)
+function load_patch(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{Int}, var::String)
 
     #-------------- If only 1 ID is given, just use load_patch_var function ----------------
     if length(patch_IDs) == 1
@@ -251,7 +249,7 @@ end
 
 
 #---------------- load multiple variables for a single patch ----------------
-function load_patch_vars(Snapshot_meta::Snapshot_metadata, patch_ID::Int, vars::Vector{String})
+function load_patch(Snapshot_meta::Snapshot_metadata, patch_ID::Int, vars::Vector{String})
     patch_size = get_integer_patch_size(Snapshot_meta)
     # Find the index of the patch with the given ID
     index = findfirst(patch -> patch.ID == patch_ID, Snapshot_meta.PATCHES)
@@ -314,7 +312,7 @@ end
 
 
 #----------------- Load multiple variables for multiple patches ----------------
-function load_patches_vars(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{Int}, vars::Vector{String})
+function load_patch(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{Int}, vars::Vector{String})
     NV = Snapshot_meta.SNAPSHOT.NV
     IDX = Snapshot_meta.IDX
     patch_size = get_integer_patch_size(Snapshot_meta)
