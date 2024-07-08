@@ -93,35 +93,37 @@ end
 
 function parse_IDX_NML(params :: String)
     dict = parse_params(params)
-    IDX_params = IDX_NML(
-        parse_value(dict["D"], Int),
-        parse_value(dict["E"], Int),
-        parse_value(dict["ET"], Int),
-        parse_value(dict["S"], Int),
-        parse_value(dict["PX"], Int),
-        parse_value(dict["PY"], Int),
-        parse_value(dict["PZ"], Int),
-        parse_value(dict["BX"], Int),
-        parse_value(dict["BY"], Int),
-        parse_value(dict["BZ"], Int),
-        parse_value(dict["QR"], Int),
-        parse_value(dict["TT"], Int),
-        parse_value(dict["PHI"], Int),
-        parse_value(dict["P1"], Int),
-        parse_value(dict["P2"], Int),
-        parse_value(dict["P3"], Int),
-        parse_value(dict["B1"], Int),
-        parse_value(dict["B2"], Int),
-        parse_value(dict["B3"], Int),
-        parse_value(dict["EX"], Int),
-        parse_value(dict["EY"], Int),
-        parse_value(dict["EZ"], Int),
-        parse_value(dict["JX"], Int),
-        parse_value(dict["JY"], Int),
-        parse_value(dict["JZ"], Int),
-        parse_value(dict["RPHI"], Int)
-    )
 
+    #---- we add 1 to get indices starting from 1 instead of 0 ----
+    IDX_params = IDX_NML(
+        parse_value(dict["D"], Int) + 1,
+        parse_value(dict["E"], Int) + 1,
+        parse_value(dict["ET"], Int) + 1,
+        parse_value(dict["S"], Int) + 1,
+        parse_value(dict["PX"], Int) + 1,
+        parse_value(dict["PY"], Int) + 1,
+        parse_value(dict["PZ"], Int) + 1,
+        parse_value(dict["BX"], Int) + 1,
+        parse_value(dict["BY"], Int) + 1,
+        parse_value(dict["BZ"], Int) + 1,
+        parse_value(dict["QR"], Int) + 1,
+        parse_value(dict["TT"], Int) + 1,
+        parse_value(dict["PHI"], Int) + 1,
+        parse_value(dict["P1"], Int) + 1,
+        parse_value(dict["P2"], Int) + 1,
+        parse_value(dict["P3"], Int) + 1,
+        parse_value(dict["B1"], Int) + 1,
+        parse_value(dict["B2"], Int) + 1,
+        parse_value(dict["B3"], Int) + 1,
+        parse_value(dict["EX"], Int) + 1,
+        parse_value(dict["EY"], Int) + 1,
+        parse_value(dict["EZ"], Int) + 1,
+        parse_value(dict["JX"], Int) + 1,
+        parse_value(dict["JY"], Int) + 1,
+        parse_value(dict["JZ"], Int) + 1,
+        parse_value(dict["RPHI"], Int) + 1
+    )
+    return IDX_params
 end
 
 function parse_NBOR_NML(params :: String)
