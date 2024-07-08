@@ -186,3 +186,77 @@ function index_to_linear_offset(index::Vector{Int}, patch_size::Vector{Int})
 
     return byte_offset
 end
+
+
+
+
+#------------- Move the file pointer n_patches forward ----------------
+function move_file_pointer_patch(f::IO, Snapshot_meta::Snapshot_metadata, n_patches :: Int)
+    _, total_size_in_bytes = get_patch_size(Snapshot_meta)
+
+    if n_patches > 1
+        seek(f,  position(f) + total_size_in_bytes * (n_patches - 1))
+    end
+end
+#--------------------------------------------------------------------------------
+
+
+function move_file_pointer_var(f::IO, Snapshot_meta::Snapshot_metadata, n_var::Int)
+    total_size, total_size_in_bytes = get_patch_size(Snapshot_meta)
+    NV = Snapshot_meta.SNAPSHOT.NV
+    _, total_var_size_in_bytes = (Int(total_size / NV) , Int(total_size_in_bytes / NV))
+
+    if n_var > 1
+        seek(f, position(f) + total_var_size_in_bytes * (n_var - 1))
+    end
+end
+
+
+#------------ Move file pointer to start of the next patch
+function move_file_pointer_next_patch(f::IO, Snapshot_meta::Snapshot_metadata, iv :: Int)
+    total_size, total_size_in_bytes = get_patch_size(Snapshot_meta)
+    NV = Snapshot_meta.SNAPSHOT.NV
+    _, total_var_size_in_bytes = (Int(total_size / NV) , Int(total_size_in_bytes / NV))
+
+    #-------- move pointer to the start of the next patch ----------------
+    if iv < NV
+        seek(f, position(f) + total_var_size_in_bytes * (NV - iv))
+    end 
+    #----------------------------------------------------------------
+end
+
+
+#---------- Move the pointer from cell index to beginning of the next variable ----------------
+function move_file_pointer_next_var(f::IO, Snapshot_meta::Snapshot_metadata, cell_index :: Int)
+    patch_size = get_integer_patch_size(Snapshot_meta)
+    last_cell_index = index_to_linear_offset(patch_size, patch_size)
+
+    if cell_index < last_cell_index
+        seek(f, position(f) + sizeof(Float32) * (last_cell_index + 1 - cell_index))
+    end
+
+end
+#-----------------------------------------------------------------------------------------------
+
+
+
+function get_sorted_patch_IDs(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{Int})
+    indices = [findfirst(patch -> patch.ID == patch_ID, Snapshot_meta.PATCHES) for patch_ID in patch_IDs]
+    sorted_indices = sortperm(indices)
+    indices = indices[sorted_indices]
+    index_diff = [indices[1]; diff(indices)]
+
+    return indices, sorted_indices, index_diff
+
+end
+
+
+function get_sorted_vars(Snapshot_meta::Snapshot_metadata, vars::Vector{String})
+    ivs = [get_idx_value(Snapshot_meta.IDX, var) for var in vars]
+    sorted_iv_indices = sortperm(ivs)
+    ivs = ivs[sorted_iv_indices]
+    vars = vars[sorted_iv_indices]
+    iv_diff = [ivs[1]; diff(ivs)]
+
+    return ivs, vars, sorted_iv_indices, iv_diff
+end
