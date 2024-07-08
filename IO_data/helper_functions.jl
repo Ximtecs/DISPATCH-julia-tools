@@ -1,3 +1,4 @@
+using LinearAlgebra
 include("../IO/Snapshot_meta_structs.jl")
 
 #---------- Get the number of points in each patch - this depends on the presence of guard zones ----------------
@@ -73,3 +74,115 @@ function get_patch_size(Snapshot_meta :: Snapshot_metadata)
     return total_size, size_in_bytes
 end
 #--------------------------------------------------------------------------------
+
+#-------- Translate a patch local floating point position to a global position -------------------
+function get_local_pos(patch::Patch_NML, global_pos::AbstractVector{<:AbstractFloat} )
+    return (global_pos - patch.LLC_NAT) ./ patch.DS
+end
+#-------------------------------------------------------------------------------------------
+
+#------- Translate a global floating point position to a patch local position -------------------
+function get_global_pos(patch::Patch_NML, local_pos::AbstractVector{<:AbstractFloat} )
+    return  local_pos .* patch.DS + patch.LLC_NAT
+end
+#-------------------------------------------------------------------------------------------------
+
+
+#----------- Translate a local floating point position to an array index ---------------------
+#-------------- The index is based on cell centered location 
+#-------------- He add 1e-10 to include 0.0 but exclude upper patch limit to numerical precision
+function local_pos_to_index(local_pos::AbstractVector{<:AbstractFloat} )
+    return round.(Int,local_pos .+ 0.5 .+ 1e-10)
+end
+#--------------------------------------------------------------------------------------------------
+
+#----------- Translate an index to a local position ----------------
+function index_to_local_pos(index :: Vector{Int})
+    return index .- (0.5 - 1e-10)
+end
+#-----------------------------------------------------------------------------
+
+
+#----------- determine if point is in a patch -----------------------
+function in_patch(patch::Patch_NML, point::AbstractVector{<:AbstractFloat})
+    LLC = patch.LLC_NAT # Lower left corner
+    Size = patch.SIZE
+    URC = LLC .+ Size # Upper right corner
+    is_in_patch = all(LLC .<= point) && all(point .< URC)
+    return is_in_patch
+end
+#-------------------------------------------------------------------------------------
+
+#----------- Find the first patch in the snapshot where the point lies within -------
+function find_patch(Snapshot_meta::Snapshot_metadata, point::AbstractVector{<:AbstractFloat})
+    for patch in Snapshot_meta.PATCHES
+        if in_patch(patch, point)
+            return patch
+        end
+    end
+    return nothing
+end
+#------------------------------------------------------------------------------------
+
+#----------- Find a patch in a list of neighbohrs where a point is within the neighbohr --------
+function find_patch(Snapshot_meta::Snapshot_metadata, point::AbstractVector{<:AbstractFloat}, NBOR_IDS::Vector{Int})
+    for id in NBOR_IDS
+        index = findfirst(patch -> patch.ID == id, Snapshot_meta.PATCHES)
+        if index !== nothing && in_patch(Snapshot_meta.PATCHES[index], point)
+            return Snapshot_meta.PATCHES[index]
+        end
+    end
+    return nothing
+end
+#-------------------------------------------------------------------------------------------
+
+
+#--------- project a position into a line 
+#--------- returns the 1D position on the line and the closets 3D position ---
+#-------- Assume 'point' is the center of the 1D line ------------------------
+function project_onto_line(point::AbstractVector{<:AbstractFloat}, dir::AbstractVector{<:AbstractFloat}, position::AbstractVector{<:AbstractFloat})
+    dir_unit = dir / sqrt(sum(dir.^2))  # Ensure the direction vector is a unit vector
+    point_to_position = position .- point  # Vector from the point on the line to the position
+
+    # Project point_to_position onto dir_unit
+    t = dot(point_to_position, dir_unit)  # This is the scalar projection of point_to_position onto dir_unit
+
+    # Calculate the closest point on the line
+    closest_point = point .+ t .* dir_unit
+
+    return t, closest_point
+end
+#---------------------------------------------------------------------------
+
+
+function index_to_byte_offset(index::Vector{Int}, patch_size::Vector{Int}, datatype::Type)
+    # Ensure the index vector has three elements (x, y, z)
+    @assert length(index) == 3 "Index must have three elements (x, y, z)"
+    @assert length(patch_size) == 3 "Dimensions must have three elements (nx, ny, nz)"
+    
+    # Calculate the linear offset in a column-major order
+    x, y, z = index
+    nx, ny, nz = patch_size
+    linear_index = (x - 1) + (y - 1) * nx + (z - 1) * nx * ny
+    
+    # Calculate the byte offset by multiplying with the size of the data type
+    byte_offset = linear_index * sizeof(datatype)
+
+    return byte_offset
+end
+
+function index_to_linear_offset(index::Vector{Int}, patch_size::Vector{Int})
+    # Ensure the index vector has three elements (x, y, z)
+    @assert length(index) == 3 "Index must have three elements (x, y, z)"
+    @assert length(patch_size) == 3 "Dimensions must have three elements (nx, ny, nz)"
+    
+    # Calculate the linear offset in a column-major order
+    x, y, z = index
+    nx, ny, nz = patch_size
+    linear_index = (x - 1) + (y - 1) * nx + (z - 1) * nx * ny
+    
+    # Calculate the byte offset by multiplying with the size of the data type
+    byte_offset = linear_index
+
+    return byte_offset
+end
