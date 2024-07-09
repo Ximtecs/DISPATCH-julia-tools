@@ -212,6 +212,12 @@ function move_file_pointer_var(f::IO, Snapshot_meta::Snapshot_metadata, n_var::I
 end
 
 
+function move_file_pointer_cell(f::IO, Snapshot_meta::Snapshot_metadata, n_cell :: Int)
+    if n_cell > 1
+        seek(f, position(f) + sizeof(Float32) * (n_cell - 1))
+    end
+end
+
 #------------ Move file pointer to start of the next patch
 function move_file_pointer_next_patch(f::IO, Snapshot_meta::Snapshot_metadata, iv :: Int)
     total_size, total_size_in_bytes = get_patch_size(Snapshot_meta)
@@ -260,3 +266,14 @@ function get_sorted_vars(Snapshot_meta::Snapshot_metadata, vars::Vector{String})
 
     return ivs, vars, sorted_iv_indices, iv_diff
 end
+
+
+function get_cell_indices_offset(Snapshot_meta::Snapshot_metadata, indices::Vector{Vector{Int}})
+    patch_size = get_integer_patch_size(Snapshot_meta)
+    offset = [index_to_linear_offset(index, patch_size) for index in indices]
+    offset_diff = [offset[1]; diff(offset)]
+
+    return offset, offset_diff
+end
+
+
