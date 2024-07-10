@@ -212,7 +212,7 @@ function move_file_pointer_var(f::IO, Snapshot_meta::Snapshot_metadata, n_var::I
 end
 
 
-function move_file_pointer_cell(f::IO, Snapshot_meta::Snapshot_metadata, n_cell :: Int)
+function move_file_pointer_cell(f::IO, n_cell :: Int)
     if n_cell > 1
         seek(f, position(f) + sizeof(Float32) * (n_cell - 1))
     end
