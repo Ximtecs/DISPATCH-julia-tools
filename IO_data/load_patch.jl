@@ -112,9 +112,9 @@ end
 
 #---------------- load a single variable for multiple patches ----------------
 function load_patch(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{Int}, var::String)
-    #-------------- If only 1 ID is given, just use load_patch_var function ----------------
+    #-------------- If only 1 ID is given, just use load_patch function ----------------
     if length(patch_IDs) == 1
-        var_data = load_patch_var(Snapshot_meta, patch_IDs[1], var)
+        var_data = load_patch(Snapshot_meta, patch_IDs[1], var)
         return reshape(var_data, size(var_data)..., 1)
     end
     #--------------------------------------------------------------------------------------------
@@ -134,7 +134,7 @@ function load_patch(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{Int}, va
     if length(unique(data_files)) > 1
         @warn "Data file different - uses non-optimized load_patches_var function"
         for (i, patch_ID) in enumerate(patch_IDs)
-            var_data = load_patch_var(Snapshot_meta, patch_ID, var)
+            var_data = load_patch(Snapshot_meta, patch_ID, var)
             all_data[:, :, :, i] = var_data
         end
         return all_data
@@ -155,7 +155,7 @@ function load_patch(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{Int}, va
         #----------- Read the data for the single variable --------------------
         read!(f, var_data)
         #----------------------------------------------------------------
-        #--------- mvoe file pointer to the start of the next patch ----------------
+        #--------- move file pointer to the start of the next patch ----------------
         move_file_pointer_next_patch(f, Snapshot_meta, iv)
         #----------------------------------------------------------------
     end
@@ -173,9 +173,6 @@ function load_patch(Snapshot_meta::Snapshot_metadata, patch_ID::Int, vars::Vecto
     #---------- find the index of the patch with the given ID ----------------
     index = findfirst(patch -> patch.ID == patch_ID, Snapshot_meta.PATCHES)
     #-------------------------------------------------------------------------
-    #------ integer index of the variable -------------------------
-    ivs, vars, sorted_iv_indices, iv_diff = get_sorted_vars(Snapshot_meta, vars)
-    #----------------------------------------------------
     #--------------- get the data file for the patch ----------------
     data_file = Snapshot_meta.PATCHES[index].DATA_FILE
     #-------------------------------------------------------------------
@@ -215,9 +212,9 @@ end
 
 #----------------- Load multiple variables for multiple patches ----------------
 function load_patch(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{Int}, vars::Vector{String})
-    #-------------- If only 1 ID is given, just use load_patch_var function ----------------
+    #-------------- If only 1 ID is given, just use load_patch with a single patch  ----------------
     if length(patch_IDs) == 1
-        var_data = load_patch_vars(Snapshot_meta, patch_IDs[1], vars)
+        var_data = load_patch(Snapshot_meta, patch_IDs[1], vars)
         #------- reshape to still get an array including patches ----------------
         for (key, value) in var_data
             var_data[key] = reshape(value, size(value)..., 1)
@@ -276,7 +273,9 @@ function load_patch(Snapshot_meta::Snapshot_metadata, patch_IDs::Vector{Int}, va
             read!(f, var_data)
             #----------------------------------------------------------------
         end
-        move_file_pointer_next_patch(f, Snapshot_meta, sorted_iv_indices[end])
+        #--------- mvoe file pointer to the start of the next patch ----------------
+        move_file_pointer_next_patch(f, Snapshot_meta, ivs[end])
+        #---------------------------------------------------------------------------
     end
     close(f)
     #--------------- sort all variables in the same order as patch_IDs ----------------
