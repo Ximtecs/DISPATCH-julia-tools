@@ -139,7 +139,7 @@ function Slice_1D(Snapshot_meta::Snapshot_metadata, point::AbstractVector{<:Abst
             #-----------------------------------------------------------------------------------
             for j in 1:length(all_indices[i])
                 #----------  Move pointer to the next cell index in the patch ------------------------
-                move_file_pointer_cell(f, Snapshot_meta, offset_diff[j])
+                move_file_pointer_cell(f, offset_diff[j])
                 #----------------------------------------------------------------------------------
                 #-------------------- find position on line and global 3D line position -------------
                 if k ==1 
@@ -175,4 +175,193 @@ function Slice_1D(Snapshot_meta::Snapshot_metadata, point::AbstractVector{<:Abst
     line_3D = line_3D[:, sorted_indices]
     #-------------------------------------------------------------------------------------
     return data , line_pos, line_3D
+end
+
+
+
+
+function Slice_1D(Snapshot_meta::Snapshot_metadata, point::AbstractVector{<:AbstractFloat}, dir::AbstractVector{<:AbstractFloat},
+    var :: String)
+    #------ index of the variable -------------------------
+    IDX = Snapshot_meta.IDX
+    iv = get_idx_value(IDX, var)
+    #----------------------------------------------------
+    #--------------- Find all patches and indices that the line crosses ---------------------
+    all_patches, all_indices = trace_1D_line(Snapshot_meta, point, dir)
+    #---------------------------------------------------------------------------------------------
+    #--------------- sort patches and indices according to patch position in data folder ---------
+    patch_indices, sorted_indices, patch_index_diff = get_sorted_patch_IDs(Snapshot_meta, all_patches)
+    #---------------------------------------------------------------------------------------------
+    #------------ Allocate data arrays ------------------------------------------------------
+    #-------- total number of points in the line ------------------------
+    n_points = sum(length.(all_indices))
+    data = zeros(n_points)
+    line_pos = zeros(n_points)
+    line_3D = zeros(3, n_points)
+    #--------------------------------------------------------------------------------------------
+    #---------- not yet implemented for multiple data file -----------------------------------------
+    data_files = [Snapshot_meta.PATCHES[index].DATA_FILE for index in patch_indices]
+    if length(unique(data_files)) > 1
+        @warn "Data file different - uses non-optimized load_patches_var function"
+        error(" Not implemented yet")
+        #Maybe make the rest of the function another function that can be called from here and load_snapshot
+        return all_data
+    end
+    #--------------------------------------------------------------------------------------------
+    #---------------- open data file ------------------------------------------------------------------------
+    data_file = data_files[1]
+    f = open(data_file, "r")
+    #---------------------------------------------------------------------------------------------------
+    #----------- location in data array -----------
+    data_index = 1
+    #--------------------------------------------
+    #------------------ Loop through all patches that the line crosses --------------------------------
+    for i in 1:length(patch_indices)
+        #---------- move file pointer to the correct patch and variable position ----------------
+        move_file_pointer_patch(f, Snapshot_meta, patch_index_diff[i])
+        move_file_pointer_var(f, Snapshot_meta,  iv)
+        #---------------------------------------------------------------------------
+        #------------ find local indices and their offsets ----------------
+        offset, offset_diff = get_cell_indices_offset(Snapshot_meta, all_indices[i])
+        #------------------------------------------------------------------------
+        for j in 1:length(all_indices[i])
+            #----------  Move pointer to the next cell index in the patch ------------------------
+            move_file_pointer_cell(f, offset_diff[j])
+            #----------------------------------------------------------------------------------
+            #-------------------- find position on line and global 3D line position -------------
+            pos = index_to_local_pos(all_indices[i][j])
+            pos = get_global_pos(Snapshot_meta.PATCHES[patch_indices[i]], pos)
+            l_pos, l_3d_pos = project_onto_line(point, dir, pos )
+            line_pos[data_index] = l_pos
+            line_3D[:, data_index] = l_3d_pos
+            #-------------------------------------------------------------------------------------
+            #------------ read data -------------------------------------
+            data[data_index] = read(f, Float32)
+            #-------------------------------------------------
+            #---------- increase data index counter ----------------
+            data_index += 1
+            #--------------------------------------------------------------
+        end
+        #-------------------- Move pointer to the next variable ------------------------------
+        move_file_pointer_next_var(f, Snapshot_meta, offset[end])
+        #--------------------------------------------------------------------------------------
+        #--------- move file pointer to the start of the next patch ----------------
+        move_file_pointer_next_patch(f, Snapshot_meta, iv)
+        #----------------------------------------------------------------
+    end
+    #---------------------------------------------------------------------------------------------------
+    #------------------ close the data file ---------------------------------------------
+    close(f)
+    #-------------------------------------------------------------------------------------
+    #------ sort output ----------------------------------------------------------------
+    sorted_indices = sortperm(line_pos)
+    data = data[sorted_indices, :]
+    line_pos = line_pos[sorted_indices]
+    line_3D = line_3D[:, sorted_indices]
+    #-------------------------------------------------------------------------------------
+    return data , line_pos, line_3D
+end
+
+function Slice_1D(Snapshot_meta::Snapshot_metadata, point::AbstractVector{<:AbstractFloat}, dir::AbstractVector{<:AbstractFloat},
+    vars :: Vector{String})
+    #------ integer index of the variable -------------------------
+    ivs, sorted_vars, sorted_iv_indices, iv_diff = get_sorted_vars(Snapshot_meta, vars)
+    #----------------------------------------------------
+    #--------------- Find all patches and indices that the line crosses ---------------------
+    all_patches, all_indices = trace_1D_line(Snapshot_meta, point, dir)
+    #---------------------------------------------------------------------------------------------
+    #--------------- sort patches and indices according to patch position in data folder ---------
+    patch_indices, sorted_indices, patch_index_diff = get_sorted_patch_IDs(Snapshot_meta, all_patches)
+    #---------------------------------------------------------------------------------------------
+    #------------ Allocate data arrays ------------------------------------------------------
+    #-------- total number of points in the line ------------------------
+    n_points = sum(length.(all_indices))
+    line_pos = zeros(n_points)
+    line_3D = zeros(3, n_points)
+    all_var_data = Dict{String, Array{Float32}}()
+    for var in vars
+        all_var_data[var] = zeros(Float32, n_points)
+    end
+    #--------------------------------------------------------------------------------------------
+    #---------- not yet implemented for multiple data file -----------------------------------------
+    data_files = [Snapshot_meta.PATCHES[index].DATA_FILE for index in patch_indices]
+    if length(unique(data_files)) > 1
+        @warn "Data file different - uses non-optimized load_patches_var function"
+        error(" Not implemented yet")
+        #Maybe make the rest of the function another function that can be called from here and load_snapshot
+        return all_data
+    end
+    #--------------------------------------------------------------------------------------------
+    #---------------- open data file ------------------------------------------------------------------------
+    data_file = data_files[1]
+    f = open(data_file, "r")
+    #---------------------------------------------------------------------------------------------------
+    #----------- location in data array -----------
+    data_index = 1
+    #--------------------------------------------
+    #------------------ Loop through all patches that the line crosses --------------------------------
+    for i in 1:length(patch_indices)
+        #---------- move file pointer to the correct patch  position ----------------
+        move_file_pointer_patch(f, Snapshot_meta, patch_index_diff[i])
+        #---------------------------------------------------------------------------
+        #------------ find local indices and their offsets ----------------
+        offset, offset_diff = get_cell_indices_offset(Snapshot_meta, all_indices[i])
+        #------------------------------------------------------------------------
+        #------- Temporary data index counter ----------------------------
+        data_index_temp = data_index
+        #-------------------------------------------------------------------
+        for k in 1:length(sorted_vars)
+            #-------------- reset data index counter for each variable ---------------------
+            data_index_temp = data_index
+            #-----------------------------------------------------------------------------------
+            #--------------------
+            var = sorted_vars[k]
+            #-------------------
+            #---------- move file pointer to the correct variable position ----------------
+            move_file_pointer_var(f, Snapshot_meta, iv_diff[k])
+            #-------------------------------------------------------------------------------------------
+            for j in 1:length(all_indices[i])
+                #----------  Move pointer to the next cell index in the patch ------------------------
+                move_file_pointer_cell(f, offset_diff[j])
+                #----------------------------------------------------------------------------------
+                #-------------------- find position on line and global 3D line position -------------
+                if k ==1 
+                    pos = index_to_local_pos(all_indices[i][j])
+                    pos = get_global_pos(Snapshot_meta.PATCHES[patch_indices[i]], pos)
+                    l_pos, l_3d_pos = project_onto_line(point, dir, pos )
+                    line_pos[data_index_temp] = l_pos
+                    line_3D[:, data_index_temp] = l_3d_pos
+                end
+                #-------------------------------------------------------------------------------------
+                #------------ read data -------------------------------------
+                all_var_data[var][data_index_temp] = read(f, Float32)
+                #-------------------------------------------------
+                #---------- increase data index counter ----------------
+                data_index_temp += 1
+                #--------------------------------------------------------------
+            end
+            #-------------------- Move pointer to the next variable ------------------------------
+            move_file_pointer_next_var(f, Snapshot_meta, offset[end])
+            #--------------------------------------------------------------------------------------
+        end
+        #---------------------------------------------------------------------------------------------------
+        data_index = data_index_temp
+        #--------- mvoe file pointer to the start of the next patch ----------------
+        move_file_pointer_next_patch(f, Snapshot_meta, ivs[end])
+        #---------------------------------------------------------------------------
+    end
+    #---------------------------------------------------------------------------------------------------
+    #------------------ close the data file ---------------------------------------------
+    close(f)
+    #-------------------------------------------------------------------------------------
+    #------ sort output ----------------------------------------------------------------
+    sorted_indices = sortperm(line_pos)
+    for var in vars
+        all_var_data[var] = all_var_data[var][sorted_indices]
+    end
+    line_pos = line_pos[sorted_indices]
+    line_3D = line_3D[:, sorted_indices]
+    #-------------------------------------------------------------------------------------
+    return all_var_data , line_pos, line_3D
+
 end
