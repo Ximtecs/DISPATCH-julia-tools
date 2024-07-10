@@ -4,8 +4,8 @@ include("../IO/Snapshot_meta_structs.jl")
 function get_idx_value(idx::IDX_NML, key::String)
     # Dictionary to map input strings to field names
     field_map = Dict(
-        "D" => :D, "rho" => :D, "density" => :D, "Density" => :D, "mass density" => :D, "Mass Density" => :D,
-        "E" => :E, "energy" => :E, "Energy" => :E, "energy density" => :E, "Energy Density" => :E,
+        "D" => :D, "d" => :D, "rho" => :D, "density" => :D, "Density" => :D, "mass density" => :D, "Mass Density" => :D,
+        "E" => :E, "e" => :E, "energy" => :E, "Energy" => :E, "energy density" => :E, "Energy Density" => :E,
         "ET" => :ET, "total energy" => :ET, "Total Energy" => :ET, "total energy density" => :ET, "Total Energy Density" => :ET,
         "S" => :S, "entropy" => :S, "Entropy" => :S,
         "PX" => :PX, "px" => :PX, "mom_x" => :PX, "mom x" => :PX, "momentum x" => :PX, "Momentum X" => :PX, "momentum x component" => :PX, "Momentum X Component" => :PX,
