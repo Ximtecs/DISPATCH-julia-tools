@@ -86,7 +86,8 @@ function parse_IO_NML(params :: String)
       parse_value(dict["TIME_DERIVS"], Int) ,
       parse_value(dict["METHOD"], String) ,
       parse_value(dict["NML_VERSION"], Int) ,
-      parse_value(dict["DO_GENERIC"], Bool) 
+      parse_value(dict["DO_GENERIC"], Bool) ,
+      parse_value(dict["DO_PIC"], Bool) 
         )
     return IO_params
 end
@@ -174,6 +175,24 @@ function parse_PATCH_NML(params :: String, NBOR_params :: NBOR_NML, data_pos :: 
 end 
 
 
+function parse_PARTICLES_NML(params :: String, data_pos :: Int, data_file :: String)
+    dict = parse_params(params)
+
+    Particles_params = Particles_NML(
+        parse_value(dict["ID"], Int),
+        parse_value(dict["N_SPECIES"], Int),
+        parse_value(dict["DO_PARTICLES"], Bool),
+        parse_value(dict["NV_PARTICLE_FIELDS"], Int),
+        parse_value(dict["IS_ELECTRON"], Vector{Bool}),
+        parse_value(dict["MASS"], Vector{Float64}),
+        parse_value(dict["CHARGE"], Vector{Float64}),
+        parse_value(dict["M"], Vector{Int}),
+        data_pos,
+        data_file
+    )
+    return Particles_params
+end
+
 #--------------- load and store information in the snapshot.nml file ------------------------------
 function parse_snapshot_nml(file_path::String)
     content = read(file_path, String)
@@ -206,11 +225,13 @@ end
 #--------------------------------------------------------------------------------------------------------
 
 
+
+
+
 #----------------- parse all pathces in a patches.nml file ------------------------------
 function parse_patches_nml(file_path::String, data_file::String)
     content = read(file_path, String)
     params_list = parse_name_content_NML(content)
-
     params_list = params_list[2:end] # remove the IDX_NML section
 
 
@@ -223,7 +244,7 @@ function parse_patches_nml(file_path::String, data_file::String)
         patch_param = params_list[i][2]
         nbor_param = params_list[i+1][2]
 
-        PATCH_params = parse_patch(params_list[i][2], params_list[i+1][2], data_pos, data_file)
+        PATCH_params = parse_patch(patch_param, nbor_param, data_pos, data_file)
         push!(patches_params, PATCH_params)
         data_pos = data_pos + 1
     end 
@@ -232,27 +253,90 @@ function parse_patches_nml(file_path::String, data_file::String)
 end
 #--------------------------------------------------------------------------------------------------------
 
+function parse_particles_nml(file_path::String, data_file::String)
+    content = read(file_path, String)
+    params_list = parse_name_content_NML(content)
+
+    #------ number of patches with particle information ------
+    n_sections = size(params_list)[1]
+    #---------------------------------------------------------
+
+    particles_params = []
+
+    data_pos = 1
+    for i in 1:n_sections
+        particle_param = params_list[i][2]
+
+        PARTICLE_paramms = parse_PARTICLES_NML(particle_param, data_pos, data_file)
+
+        push!(particles_params, PARTICLE_paramms)
+
+        data_pos = data_pos + 1
+    end
+
+    return particles_params, n_sections
+end
+
 
 #-------------- parse all meta information from a snapshot folder ------------------------------
-function read_snapshot(folder)
-    snapshot_nml_file = folder * "snapshot.nml"
+function read_snapshot(data_folder :: String, snap :: Int)
+
+    snap_folder = data_folder * int_to_fixed_length_string(snap, 5) * "/"
+
+    snapshot_nml_file = snap_folder * "snapshot.nml"
     IO_params, IDX_params, Snapshot_params = parse_snapshot_nml(snapshot_nml_file)
 
 
     patches_params = []
+    particles_params = Vector{Particles_NML}()
+
     n_patches = 0 
 
+    DO_PIC = IO_params.DO_PIC
+    particle_folder = data_folder * "particles/" * int_to_fixed_length_string(snap, 5) * "/"
+    n_particles_patches = 0
+
+
     for MPI_rank in 0:Snapshot_params.MPI_SIZE-1
-        patches_nml_file = folder * "rank_" * int_to_fixed_length_string(MPI_rank, 5) * "_patches.nml"
-        data_file = folder * "snapshot_" * int_to_fixed_length_string(MPI_rank, 5) * ".dat"
+        patches_nml_file = snap_folder * "rank_" * int_to_fixed_length_string(MPI_rank, 5) * "_patches.nml"
+        data_file = snap_folder * "snapshot_" * int_to_fixed_length_string(MPI_rank, 5) * ".dat"
+
+        particles_nml_file = particle_folder * "rank_" * int_to_fixed_length_string(MPI_rank, 5) * "_particles.nml"
+        particles_data_file = particle_folder * "rank_" * int_to_fixed_length_string(MPI_rank, 5) * ".data"
 
         patches_params_rank, n_patches_rank = parse_patches_nml(patches_nml_file,data_file)
         patches_params = vcat(patches_params, patches_params_rank)
         n_patches = n_patches + n_patches_rank
+
+        if DO_PIC
+            particles_params_rank, n_particle_patches_rank = parse_particles_nml(particles_nml_file, particles_data_file)
+            n_particles_patches += n_particle_patches_rank
+            particles_params = vcat(particles_params, particles_params_rank)
+        end
+
     end 
 
+    if DO_PIC
+        #----------- count total number of particles in the snapshot for each species ------------------------------
+        n_species = particles_params[1].N_SPECIES
+        n_particles = zeros(Int, n_species)
+        for param in particles_params
+            for i in 1:n_species
+                n_particles[i] += param.M[i]
+            end
+        end
+        #------------------------------------------------------------------------------------------------------------
+    else
+        n_species = 1
+        n_particles = zeros(Int,1)
+    end
 
-    Snapshot_meta = Snapshot_metadata(IO_params, Snapshot_params, IDX_params, patches_params, n_patches, folder)
+
+
+    Snapshot_meta = Snapshot_metadata(IO_params, Snapshot_params, IDX_params,
+                                     n_patches, patches_params, 
+                                     n_particles_patches, n_species, n_particles, particles_params,
+                                     snap_folder)
 
     return Snapshot_meta
 end 

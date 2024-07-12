@@ -38,6 +38,7 @@ function print_info(io_nml::IO_NML)
     println("METHOD:              ", io_nml.METHOD)
     println("NML_VERSION:         ", io_nml.NML_VERSION)
     println("DO_GENERIC:          ", io_nml.DO_GENERIC)
+    println("DO_PIC:              ", io_nml.DO_PIC)
 end
 
 function print_info(snapshot_nml::SNAPSHOT_NML)
@@ -105,6 +106,21 @@ function print_info(patch_nml::Patch_NML)
     println("DATA_FILE:           ", patch_nml.DATA_FILE)
 end
 
+
+
+function print_info(particle_nml::Particles_NML)
+    println("ID:                  ", particle_nml.ID)
+    println("Number of Species:   ", particle_nml.N_SPECIES)
+    println("Do Particles:        ", particle_nml.DO_PARTICLES)
+    println("#Particle Fields:    ", particle_nml.NV_PARTICLE_FIELDS)
+    println("Is Electron:         ", join(particle_nml.IS_ELECTRON, ", "))
+    println("Mass:                ", join(particle_nml.MASS, ", "))
+    println("Charge:              ", join(particle_nml.CHARGE, ", "))
+    println("M:                   ", join(particle_nml.M, ", "))
+    println("Data Position:       ", particle_nml.DATA_POS)
+    println("Data File:           ", particle_nml.DATA_FILE)
+end
+
 function print_info(metadata::Snapshot_metadata)
     println("IO:                  ")
     print_info(metadata.IO)
@@ -114,4 +130,10 @@ function print_info(metadata::Snapshot_metadata)
     print_info(metadata.IDX)
     println("\nNumber of PATCHES: ", metadata.n_patches)
     println("Folder:              ", metadata.folder)
+    
+    if metadata.IO.DO_PIC && metadata.n_particle_patches > 0
+    println("\n#PIC Patches:      ", metadata.n_particle_patches)
+    println("Number of Species:   ", metadata.N_SPECIES)
+    println("#Particles           ", join(metadata.N_PARTICLES, ", "))
+    end
 end

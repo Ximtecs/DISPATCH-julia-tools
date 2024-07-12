@@ -36,6 +36,7 @@ struct IO_NML
     METHOD::String
     NML_VERSION::Int
     DO_GENERIC::Bool
+    DO_PIC :: Bool
 end
 
 struct SNAPSHOT_NML
@@ -99,17 +100,34 @@ struct Patch_NML
     EROT1::Vector{Float64}
     EROT2::Vector{Float64}
     EROT3::Vector{Float64}
-    NBOR_NML::NBOR_NML # list of neighbors
+    NBOR_NML:: NBOR_NML # list of neighbors
     DATA_POS::Int # position in the data file
     DATA_FILE::String # data file
 end
 
+struct Particles_NML
+    ID::Int
+    N_SPECIES::Int
+    DO_PARTICLES::Bool
+    NV_PARTICLE_FIELDS::Int
+    IS_ELECTRON::Vector{Bool}
+    MASS::Vector{Float64}
+    CHARGE::Vector{Float64}
+    M::Vector{Int}
+    DATA_POS :: Int
+    DATA_FILE :: String
+end
 
 struct Snapshot_metadata
     IO :: IO_NML
     SNAPSHOT:: SNAPSHOT_NML
     IDX :: IDX_NML
-    PATCHES :: Vector{Patch_NML}
     n_patches :: Int
+    PATCHES :: Vector{Patch_NML}
+    n_particle_patches :: Int
+    N_SPECIES :: Int
+    N_PARTICLES :: Vector{Int}
+    PARTICLES :: Vector{Particles_NML}
     folder :: String
 end 
+
