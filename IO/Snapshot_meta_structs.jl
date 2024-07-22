@@ -37,6 +37,7 @@ struct IO_NML
     NML_VERSION::Int
     DO_GENERIC::Bool
     DO_PIC :: Bool
+    DO_PARTICLES :: Bool
 end
 
 struct SNAPSHOT_NML

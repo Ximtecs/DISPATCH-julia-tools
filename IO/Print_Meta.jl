@@ -39,6 +39,7 @@ function print_info(io_nml::IO_NML)
     println("NML_VERSION:         ", io_nml.NML_VERSION)
     println("DO_GENERIC:          ", io_nml.DO_GENERIC)
     println("DO_PIC:              ", io_nml.DO_PIC)
+    println("DO_PARTICLES:        ", io_nml.DO_PARTICLES)
 end
 
 function print_info(snapshot_nml::SNAPSHOT_NML)

@@ -87,7 +87,8 @@ function parse_IO_NML(params :: String)
       parse_value(dict["METHOD"], String) ,
       parse_value(dict["NML_VERSION"], Int) ,
       parse_value(dict["DO_GENERIC"], Bool) ,
-      parse_value(dict["DO_PIC"], Bool) 
+      parse_value(dict["DO_PIC"], Bool) ,
+      parse_value(dict["DO_PARTICLES"], Bool)
         )
     return IO_params
 end
