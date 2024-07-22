@@ -75,6 +75,8 @@ function get_patch_size(Snapshot_meta :: Snapshot_metadata)
 end
 #--------------------------------------------------------------------------------
 
+
+
 #-------- Translate a patch local floating point position to a global position -------------------
 function get_local_pos(patch::Patch_NML, global_pos::AbstractVector{<:AbstractFloat} )
     return (global_pos - patch.LLC_NAT) ./ patch.DS
@@ -83,15 +85,29 @@ end
 
 #------- Translate a global floating point position to a patch local position -------------------
 function get_global_pos(patch::Patch_NML, local_pos::AbstractVector{<:AbstractFloat} )
+    #TODO - Note that local pos shouold be relative to LLC_NAT
     return  local_pos .* patch.DS + patch.LLC_NAT
 end
 #-------------------------------------------------------------------------------------------------
 
 
+#---------- Calculate global position of particles ----------------
+function calc_global_particle_pos(q , r, patch :: Patch_NML, snapshot :: SNAPSHOT_NML)
+    LLC = patch.LLC_NAT
+    li = snapshot.LI
+    ds = patch.DS
+    rel_pos = q .+ r .+ 0.5
+    rel_pos = rel_pos .- li
+    global_pos = LLC .+ rel_pos .* ds
+    return global_pos
+end
+#---------------------------------------------------------------
+
 #----------- Translate a local floating point position to an array index ---------------------
 #-------------- The index is based on cell centered location 
 #-------------- He add 1e-10 to include 0.0 but exclude upper patch limit to numerical precision
 function local_pos_to_index(local_pos::AbstractVector{<:AbstractFloat} )
+    # TODO - note this only works if there are no guard zones
     return round.(Int,local_pos .+ 0.5 .+ 1e-10)
 end
 #--------------------------------------------------------------------------------------------------
