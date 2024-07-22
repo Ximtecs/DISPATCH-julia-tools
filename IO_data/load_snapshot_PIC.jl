@@ -120,7 +120,7 @@ function load_snapshot_PIC(Snapshot_meta :: Snapshot_metadata, INCLUDE_PARTICLES
                             #--------------------------------------------------------------------------------
 
                             #---------- Calculate and store global position of each particle ---------------
-                            global_pos  = calc_global_pos(q_data, r_data, patch, snapshot)
+                            global_pos  = calc_global_particle_pos(q_data, r_data, patch, snapshot)
                             pos_data .= global_pos
                             #--------------------------------------------------------------------------------
 
