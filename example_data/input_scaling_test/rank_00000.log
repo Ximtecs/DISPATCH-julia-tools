@@ -1,0 +1,1290 @@
+ stdmpi open   5.7489525992423296E-002
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13  14F  -2
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13   3F  -2
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13   9F  -2
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13   2F  -2
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13   8F  -2
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13  13F  -2
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13  15F  -2
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13   6F  -2
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13   5F  -2
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13   7F  -2
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13  10F  -2
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13   0T   0
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13  11F  -2
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13   1F  -2
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13   4F  -2
+io_mod::init io_unit%log, omp%thread, io_unit%master, io_unit%verbose:  13  12F  -2
+ io_t%warning: cartesian_t%init: origin specified, position computed
+ hash_table%init: allocating      655360
+list_t%init: hash table size:  63.0 MB, 504.0 bytes/item
+ hash_table%init: allocating      655360
+list_t%init: hash table size:  63.0 MB, 504.0 bytes/item
+ cartesian_mod: ntask,nwrite=          25          25
+ cartesian_mod: ntask,nwrite=          25          25
+task_list      25:
+list_t%print_tasks: id, time, RBV =        1    0.00000       FFF
+list_t%print_tasks: id, time, RBV =        2    0.00000       FFF
+list_t%print_tasks: id, time, RBV =        3    0.00000       FFF
+list_t%print_tasks: id, time, RBV =        4    0.00000       FFF
+list_t%print_tasks: id, time, RBV =        5    0.00000       FFF
+list_t%print_tasks: id, time, RBV =        6    0.00000       FFF
+list_t%print_tasks: id, time, RBV =        7    0.00000       FFF
+list_t%print_tasks: id, time, RBV =        8    0.00000       FFF
+list_t%print_tasks: id, time, RBV =        9    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       10    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       11    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       12    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       13    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       14    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       15    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       16    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       17    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       18    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       19    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       20    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       21    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       22    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       23    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       24    0.00000       FFF
+list_t%print_tasks: id, time, RBV =       25    0.00000       FFF
+ 
+    0.250963     0  barrier_mpi: dispatcher_t%execute
+  0.25096559093799442      dispatcher_t%execute begin
+ process memory allocated:   0.099 GB
+    0.251095     0  barrier_mpi: self%execute
+ list_t%info: 
+list_t%info: shared%levelmin,max,self...=    6  6  6  6
+ list_t%info: level,n=           6          25
+    0.251106     0  barrier_mpi: pre-execute
+ task_t%statistics: stub
+ task_t%statistics: stub
+ task_t%statistics: stub
+ task_t%statistics: stub
+ task_t%statistics: stub
+ task_t%statistics: stub
+ task_t%statistics: stub
+ task_t%statistics: stub
+ task_t%statistics: stub
+ task_t%statistics: stub
+ task_t%statistics: stub
+ task_t%statistics: stub
+ task_t%statistics: stub
+ task_t%statistics: stub
+ task_t%statistics: stub
+ task_t%statistics: stub
+ increasing size of patch           1 export old n          11 new n          14          10          10 T
+ Neighbohr id:            7
+ increasing size of patch           1 export old n          11 new n          14          10          10 T
+ Neighbohr id:            6
+ increasing size of patch           1 export old n          11 new n          14          10          10 T
+ Neighbohr id:            2
+ increasing size of patch           1 export old n          11 new n          14          10          10 T
+ Neighbohr id:           25
+ increasing size of patch           1 export old n          11 new n          14          10          10 F
+ Neighbohr id:            7
+ increasing size of patch           1 export old n          11 new n          14          10          10 F
+ Neighbohr id:           10
+ increasing size of patch           1 export old n          11 new n          14          10          10 F
+ Neighbohr id:           22
+ increasing size of patch           1 export old n          11 new n          14          10          10 F
+ Neighbohr id:           25
+ increasing size of patch           1 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            7
+ increasing size of patch           1 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            6
+ increasing size of patch           1 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            2
+ increasing size of patch           1 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           25
+ increasing size of patch           1 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            7
+ increasing size of patch           1 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           10
+ increasing size of patch           1 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           22
+ increasing size of patch           1 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           25
+ patch_t%pack: setting mpi_mesg%nbuf =       25226
+ increasing size of patch          25 export old n          11 new n          14          10          10 T
+ Neighbohr id:           21
+ increasing size of patch           5 export old n          11 new n          14          10          10 T
+ Neighbohr id:           10
+ increasing size of patch           5 export old n          11 new n          14          10          10 T
+ Neighbohr id:            9
+ increasing size of patch          25 export old n          11 new n          14          10          10 T
+ Neighbohr id:           20
+ increasing size of patch           5 export old n          11 new n          14          10          10 T
+ Neighbohr id:            4
+ increasing size of patch          21 export old n          11 new n          14          10          10 T
+ Neighbohr id:           20
+ increasing size of patch           5 export old n          11 new n          14          10          10 T
+ Neighbohr id:            1
+ increasing size of patch          21 export old n          11 new n          14          10          10 T
+ Neighbohr id:           17
+ increasing size of patch          25 export old n          11 new n          14          10          10 T
+ Neighbohr id:           16
+ increasing size of patch          21 export old n          11 new n          14          10          10 T
+ Neighbohr id:            5
+ increasing size of patch          25 export old n          11 new n          14          10          10 T
+ Neighbohr id:            5
+ increasing size of patch          10 export old n          11 new n          14          10          10 T
+ Neighbohr id:           14
+ increasing size of patch          22 export old n          11 new n          14          10          10 T
+ Neighbohr id:           21
+ increasing size of patch          21 export old n          11 new n          14          10          10 T
+ Neighbohr id:            2
+ increasing size of patch           2 export old n          11 new n          14          10          10 T
+ Neighbohr id:            8
+ increasing size of patch          10 export old n          11 new n          14          10          10 T
+ Neighbohr id:           11
+ increasing size of patch           2 export old n          11 new n          14          10          10 T
+ Neighbohr id:            6
+ increasing size of patch          22 export old n          11 new n          14          10          10 T
+ Neighbohr id:           17
+ increasing size of patch           5 export old n          11 new n          14          10          10 F
+ Neighbohr id:            6
+ increasing size of patch           7 export old n          11 new n          14          10          10 T
+ Neighbohr id:           12
+ increasing size of patch           2 export old n          11 new n          14          10          10 T
+ Neighbohr id:            3
+ increasing size of patch          22 export old n          11 new n          14          10          10 T
+ Neighbohr id:           16
+ increasing size of patch           5 export old n          11 new n          14          10          10 F
+ Neighbohr id:            9
+ increasing size of patch           2 export old n          11 new n          14          10          10 T
+ increasing size of patch          21 export old n          11 new n          14          10          10 F
+ increasing size of patch          22 export old n          11 new n          14          10          10 T
+ Neighbohr id:            2
+ Neighbohr id:            2
+ Neighbohr id:           23
+ increasing size of patch           5 export old n          11 new n          14          10          10 F
+ Neighbohr id:           21
+ increasing size of patch          21 export old n          11 new n          14          10          10 F
+ Neighbohr id:            5
+ increasing size of patch           5 export old n          11 new n          14          10          10 F
+ Neighbohr id:           24
+ increasing size of patch           7 export old n          11 new n          14          10          10 T
+ Neighbohr id:            8
+ increasing size of patch          21 export old n          11 new n          14          10          10 F
+ Neighbohr id:           17
+ increasing size of patch          25 export old n          11 new n          14          10          10 F
+ Neighbohr id:            1
+ increasing size of patch          21 export old n          11 new n          14          10          10 F
+ Neighbohr id:           20
+ increasing size of patch          22 export old n          11 new n          14          10          10 F
+ Neighbohr id:            1
+ increasing size of patch           2 export old n          11 new n          14          10          10 F
+ Neighbohr id:            6
+ increasing size of patch          10 export old n          11 new n          14          10          10 T
+ Neighbohr id:            4
+ increasing size of patch          25 export old n          11 new n          14          10          10 F
+ Neighbohr id:            4
+ increasing size of patch          10 export old n          11 new n          14          10          10 T
+ Neighbohr id:            1
+ increasing size of patch          22 export old n          11 new n          14          10          10 F
+ Neighbohr id:            3
+ increasing size of patch           2 export old n          11 new n          14          10          10 F
+ Neighbohr id:            8
+ increasing size of patch           6 export old n          11 new n          14          10          10 T
+ Neighbohr id:           11
+ increasing size of patch          22 export old n          11 new n          14          10          10 F
+ Neighbohr id:           16
+ increasing size of patch           2 export old n          11 new n          14          10          10 F
+ Neighbohr id:           21
+ increasing size of patch          10 export old n          11 new n          14          10          10 F
+ Neighbohr id:            1
+ increasing size of patch          25 export old n          11 new n          14          10          10 F
+ Neighbohr id:           16
+ increasing size of patch          10 export old n          11 new n          14          10          10 F
+ Neighbohr id:            4
+ increasing size of patch           6 export old n          11 new n          14          10          10 T
+ Neighbohr id:           10
+ increasing size of patch           7 export old n          11 new n          14          10          10 T
+ Neighbohr id:            2
+ increasing size of patch          25 export old n          11 new n          14          10          10 F
+ Neighbohr id:           19
+ increasing size of patch          22 export old n          11 new n          14          10          10 F
+ Neighbohr id:           18
+ increasing size of patch           2 export old n          11 new n          14          10          10 F
+ Neighbohr id:            2
+ increasing size of patch           7 export old n          11 new n          14          10          10 T
+ Neighbohr id:           13
+ increasing size of patch          10 export old n          11 new n          14          10          10 F
+ Neighbohr id:           11
+ increasing size of patch           7 export old n          11 new n          14          10          10 F
+ Neighbohr id:            1
+ increasing size of patch          10 export old n          11 new n          14          10          10 F
+ Neighbohr id:           14
+ increasing size of patch           7 export old n          11 new n          14          10          10 F
+ increasing size of patch           6 export old n          11 new n          14          10          10 T
+ Neighbohr id:            1
+ Neighbohr id:            3
+ increasing size of patch           6 export old n          11 new n          14          10          10 T
+ Neighbohr id:           15
+ increasing size of patch          21 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           20
+ increasing size of patch          21 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           17
+ increasing size of patch          21 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            5
+ increasing size of patch           6 export old n          11 new n          14          10          10 F
+ Neighbohr id:            2
+ increasing size of patch          21 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            2
+ increasing size of patch           6 export old n          11 new n          14          10          10 F
+ Neighbohr id:            5
+ increasing size of patch           7 export old n          11 new n          14          10          10 F
+ Neighbohr id:           11
+ increasing size of patch          22 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           21
+ increasing size of patch           2 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            8
+ increasing size of patch           5 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           10
+ increasing size of patch           5 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            9
+ increasing size of patch          21 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            2
+ increasing size of patch           2 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            6
+ increasing size of patch          22 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           17
+ increasing size of patch          21 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            5
+ increasing size of patch           2 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            3
+ increasing size of patch           5 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            4
+ increasing size of patch          22 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           16
+ increasing size of patch          10 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           14
+ increasing size of patch           7 export old n          11 new n          14          10          10 F
+ Neighbohr id:           13
+ increasing size of patch          10 ghosts old n          11 new n          14          10          10 T
+ increasing size of patch           5 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            1
+ Neighbohr id:           11
+ increasing size of patch          21 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           17
+ increasing size of patch           2 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            1
+ increasing size of patch          21 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           20
+ increasing size of patch          22 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            2
+ increasing size of patch           2 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            6
+ increasing size of patch          10 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            4
+ increasing size of patch           5 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            6
+ increasing size of patch           6 export old n          11 new n          14          10          10 F
+ Neighbohr id:           12
+ increasing size of patch           2 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            8
+ increasing size of patch          22 ghosts old n          11 new n          14          10          10 F
+ increasing size of patch           5 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            1
+ Neighbohr id:            9
+ increasing size of patch           2 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           21
+ increasing size of patch           6 export old n          11 new n          14          10          10 F
+ Neighbohr id:           15
+ increasing size of patch           2 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            2
+ increasing size of patch          22 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            3
+ increasing size of patch          22 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           16
+ increasing size of patch           5 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           21
+ increasing size of patch          10 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            1
+ increasing size of patch           5 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           24
+ increasing size of patch          22 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           18
+ increasing size of patch          10 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            1
+ increasing size of patch          10 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            4
+ increasing size of patch          25 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           21
+ increasing size of patch          10 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           11
+ increasing size of patch          25 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           20
+ increasing size of patch          10 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           14
+ increasing size of patch          25 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           16
+ increasing size of patch          25 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            5
+ increasing size of patch           7 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           12
+ increasing size of patch          25 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            1
+ increasing size of patch           7 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            8
+ increasing size of patch          25 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            4
+ increasing size of patch          25 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           16
+ increasing size of patch          25 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           19
+ increasing size of patch           7 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            2
+ increasing size of patch           7 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           13
+ increasing size of patch           7 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            1
+ increasing size of patch           6 ghosts old n          11 new n          14          10          10 T
+ increasing size of patch           7 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            3
+ Neighbohr id:           11
+ increasing size of patch           6 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           10
+ increasing size of patch           7 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           11
+ increasing size of patch           7 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           13
+ increasing size of patch           6 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            1
+ increasing size of patch           6 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           15
+ increasing size of patch           6 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            2
+ increasing size of patch           6 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            5
+ increasing size of patch           6 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           12
+ increasing size of patch           6 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           15
+ increasing size of patch          17 export old n          11 new n          14          10          10 T
+ Neighbohr id:           22
+ increasing size of patch          17 export old n          11 new n          14          10          10 T
+ Neighbohr id:           18
+ increasing size of patch          23 export old n          11 new n          14          10          10 T
+ Neighbohr id:           22
+ increasing size of patch          20 export old n          11 new n          14          10          10 T
+ Neighbohr id:           24
+ increasing size of patch           8 export old n          11 new n          14          10          10 T
+ Neighbohr id:           13
+ increasing size of patch          20 export old n          11 new n          14          10          10 T
+ Neighbohr id:           21
+ increasing size of patch          23 export old n          11 new n          14          10          10 T
+ Neighbohr id:           18
+ increasing size of patch          23 export old n          11 new n          14          10          10 T
+ Neighbohr id:           17
+ increasing size of patch          17 export old n          11 new n          14          10          10 T
+ Neighbohr id:           12
+ increasing size of patch           8 export old n          11 new n          14          10          10 T
+ Neighbohr id:            9
+ increasing size of patch          23 export old n          11 new n          14          10          10 T
+ Neighbohr id:            3
+ increasing size of patch           3 export old n          11 new n          14          10          10 T
+ increasing size of patch          17 export old n          11 new n          14          10          10 T
+ Neighbohr id:           23
+ Neighbohr id:            9
+ increasing size of patch          17 export old n          11 new n          14          10          10 F
+ Neighbohr id:           11
+ increasing size of patch          16 export old n          11 new n          14          10          10 T
+ Neighbohr id:           21
+ increasing size of patch          20 export old n          11 new n          14          10          10 T
+ Neighbohr id:           14
+ increasing size of patch           3 export old n          11 new n          14          10          10 T
+ Neighbohr id:            7
+ increasing size of patch          16 export old n          11 new n          14          10          10 T
+ increasing size of patch          18 export old n          11 new n          14          10          10 T
+ increasing size of patch           8 export old n          11 new n          14          10          10 T
+ increasing size of patch          23 export old n          11 new n          14          10          10 F
+ Neighbohr id:            2
+ Neighbohr id:           23
+ increasing size of patch          23 export old n          11 new n          14          10          10 F
+ Neighbohr id:            4
+ increasing size of patch          23 export old n          11 new n          14          10          10 F
+ Neighbohr id:           17
+ increasing size of patch          18 export old n          11 new n          14          10          10 T
+ Neighbohr id:           19
+ increasing size of patch           3 export old n          11 new n          14          10          10 T
+ Neighbohr id:            4
+ increasing size of patch          20 export old n          11 new n          14          10          10 T
+ Neighbohr id:           11
+ Neighbohr id:           20
+ increasing size of patch           3 export old n          11 new n          14          10          10 T
+ Neighbohr id:           24
+ increasing size of patch          20 export old n          11 new n          14          10          10 F
+ Neighbohr id:           11
+ increasing size of patch          20 export old n          11 new n          14          10          10 F
+ Neighbohr id:           14
+ Neighbohr id:            3
+ increasing size of patch           3 export old n          11 new n          14          10          10 F
+ Neighbohr id:            7
+ increasing size of patch          17 export old n          11 new n          14          10          10 F
+ increasing size of patch           8 export old n          11 new n          14          10          10 T
+ Neighbohr id:           13
+ Neighbohr id:           14
+ increasing size of patch          23 export old n          11 new n          14          10          10 F
+ Neighbohr id:           19
+ increasing size of patch          16 export old n          11 new n          14          10          10 T
+ increasing size of patch           8 export old n          11 new n          14          10          10 F
+ Neighbohr id:            2
+ Neighbohr id:           11
+ increasing size of patch           3 export old n          11 new n          14          10          10 F
+ Neighbohr id:            9
+ increasing size of patch           3 export old n          11 new n          14          10          10 F
+ Neighbohr id:           22
+ increasing size of patch          20 export old n          11 new n          14          10          10 F
+ Neighbohr id:           21
+ increasing size of patch          16 export old n          11 new n          14          10          10 T
+ Neighbohr id:           25
+ increasing size of patch          20 export old n          11 new n          14          10          10 F
+ Neighbohr id:           24
+ increasing size of patch           8 export old n          11 new n          14          10          10 F
+ Neighbohr id:            4
+ increasing size of patch          18 export old n          11 new n          14          10          10 T
+ Neighbohr id:           13
+ increasing size of patch          16 export old n          11 new n          14          10          10 F
+ Neighbohr id:           12
+ increasing size of patch           3 export old n          11 new n          14          10          10 F
+ Neighbohr id:           24
+ increasing size of patch          17 export old n          11 new n          14          10          10 F
+ Neighbohr id:           21
+ increasing size of patch          16 export old n          11 new n          14          10          10 F
+ Neighbohr id:           15
+ increasing size of patch          18 export old n          11 new n          14          10          10 T
+ Neighbohr id:           24
+ increasing size of patch          18 export old n          11 new n          14          10          10 F
+ Neighbohr id:           12
+ increasing size of patch           8 export old n          11 new n          14          10          10 F
+ Neighbohr id:           12
+ increasing size of patch          17 export old n          11 new n          14          10          10 F
+ Neighbohr id:           23
+ increasing size of patch          18 export old n          11 new n          14          10          10 F
+ Neighbohr id:           14
+ increasing size of patch          16 export old n          11 new n          14          10          10 F
+ Neighbohr id:           22
+ increasing size of patch          16 export old n          11 new n          14          10          10 F
+ Neighbohr id:           25
+ increasing size of patch          15 export old n          11 new n          14          10          10 T
+ Neighbohr id:           19
+ increasing size of patch          15 export old n          11 new n          14          10          10 T
+ increasing size of patch          11 export old n          11 new n          14          10          10 T
+ Neighbohr id:           16
+ Neighbohr id:           16
+ increasing size of patch           8 export old n          11 new n          14          10          10 F
+ Neighbohr id:           14
+ increasing size of patch          18 export old n          11 new n          14          10          10 F
+ Neighbohr id:           22
+ increasing size of patch          11 export old n          11 new n          14          10          10 T
+ Neighbohr id:           15
+ increasing size of patch          23 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           22
+ increasing size of patch           9 export old n          11 new n          14          10          10 T
+ Neighbohr id:           14
+ increasing size of patch          20 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           24
+ increasing size of patch          18 export old n          11 new n          14          10          10 F
+ Neighbohr id:           24
+ increasing size of patch          20 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           21
+ increasing size of patch          14 export old n          11 new n          14          10          10 T
+ increasing size of patch          23 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           18
+ Neighbohr id:           18
+ increasing size of patch          23 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           17
+ increasing size of patch          15 export old n          11 new n          14          10          10 T
+ Neighbohr id:            9
+ increasing size of patch           9 export old n          11 new n          14          10          10 T
+ Neighbohr id:           10
+ increasing size of patch          23 ghosts old n          11 new n          14          10          10 T
+ increasing size of patch          11 export old n          11 new n          14          10          10 T
+ increasing size of patch          15 export old n          11 new n          14          10          10 T
+ Neighbohr id:            6
+ Neighbohr id:            3
+ Neighbohr id:            6
+ increasing size of patch          14 export old n          11 new n          14          10          10 T
+ Neighbohr id:           13
+ increasing size of patch          17 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           22
+ increasing size of patch           3 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            9
+ increasing size of patch          11 export old n          11 new n          14          10          10 T
+ Neighbohr id:           20
+ increasing size of patch          20 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           14
+ increasing size of patch          20 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           11
+ increasing size of patch          15 export old n          11 new n          14          10          10 F
+ Neighbohr id:            6
+ increasing size of patch          17 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           18
+ increasing size of patch           3 ghosts old n          11 new n          14          10          10 T
+ increasing size of patch          15 export old n          11 new n          14          10          10 F
+ Neighbohr id:            9
+ increasing size of patch          23 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            2
+ increasing size of patch          14 export old n          11 new n          14          10          10 T
+ Neighbohr id:            8
+ increasing size of patch          23 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            4
+ increasing size of patch          11 export old n          11 new n          14          10          10 F
+ Neighbohr id:            7
+ increasing size of patch          23 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           17
+ increasing size of patch          16 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           21
+ increasing size of patch          11 export old n          11 new n          14          10          10 F
+ Neighbohr id:           10
+ increasing size of patch          16 ghosts old n          11 new n          14          10          10 T
+ increasing size of patch          14 export old n          11 new n          14          10          10 T
+ Neighbohr id:           20
+ Neighbohr id:           20
+ increasing size of patch          20 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           11
+ increasing size of patch          14 export old n          11 new n          14          10          10 F
+ Neighbohr id:            8
+ increasing size of patch          20 ghosts old n          11 new n          14          10          10 F
+ increasing size of patch          23 ghosts old n          11 new n          14          10          10 F
+ increasing size of patch           8 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            7
+ Neighbohr id:           19
+ Neighbohr id:           14
+ Neighbohr id:           13
+ increasing size of patch           9 export old n          11 new n          14          10          10 T
+ increasing size of patch          15 export old n          11 new n          14          10          10 F
+ Neighbohr id:           16
+ increasing size of patch           3 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            4
+ increasing size of patch          14 export old n          11 new n          14          10          10 F
+ Neighbohr id:           10
+ Neighbohr id:            4
+ increasing size of patch          15 export old n          11 new n          14          10          10 F
+ Neighbohr id:           19
+ increasing size of patch           8 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            9
+ increasing size of patch          18 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           23
+ increasing size of patch          17 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           12
+ increasing size of patch          16 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           11
+ increasing size of patch           3 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:        32621
+ increasing size of patch          16 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           25
+ increasing size of patch          11 export old n          11 new n          14          10          10 F
+ Neighbohr id:           17
+ increasing size of patch          18 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           19
+ increasing size of patch          20 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           21
+ increasing size of patch           9 export old n          11 new n          14          10          10 T
+ Neighbohr id:           15
+ increasing size of patch          11 export old n          11 new n          14          10          10 F
+ Neighbohr id:           20
+ increasing size of patch          16 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           12
+ increasing size of patch          20 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           24
+ increasing size of patch          16 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           15
+ increasing size of patch           3 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            7
+ increasing size of patch          18 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           13
+ increasing size of patch           4 export old n          11 new n          14          10          10 T
+ Neighbohr id:           10
+ increasing size of patch          18 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           24
+ increasing size of patch          18 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           12
+ increasing size of patch           9 export old n          11 new n          14          10          10 F
+ increasing size of patch          16 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           22
+ Neighbohr id:            3
+ increasing size of patch          16 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           25
+ increasing size of patch           3 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            9
+ increasing size of patch           3 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           22
+ increasing size of patch           9 export old n          11 new n          14          10          10 F
+ Neighbohr id:            5
+ increasing size of patch           4 export old n          11 new n          14          10          10 T
+ Neighbohr id:            8
+ increasing size of patch          17 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           23
+ increasing size of patch           4 export old n          11 new n          14          10          10 T
+ Neighbohr id:            5
+ increasing size of patch           3 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            3
+ increasing size of patch          17 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           11
+ increasing size of patch           8 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            3
+ increasing size of patch          17 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           13
+ increasing size of patch          15 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           19
+ increasing size of patch           9 export old n          11 new n          14          10          10 F
+ Neighbohr id:           13
+ increasing size of patch          14 export old n          11 new n          14          10          10 F
+ Neighbohr id:           18
+ increasing size of patch          15 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           16
+ increasing size of patch          18 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           14
+ increasing size of patch           8 ghosts old n          11 new n          14          10          10 T
+ increasing size of patch           4 export old n          11 new n          14          10          10 T
+ Neighbohr id:           25
+ Neighbohr id:           25
+ increasing size of patch           9 export old n          11 new n          14          10          10 F
+ Neighbohr id:           15
+ increasing size of patch           8 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            2
+ increasing size of patch          17 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           21
+ increasing size of patch          14 export old n          11 new n          14          10          10 F
+ Neighbohr id:           20
+ increasing size of patch          18 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           22
+ increasing size of patch          11 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           16
+ increasing size of patch           8 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            4
+ increasing size of patch          24 export old n          11 new n          14          10          10 T
+ increasing size of patch          15 ghosts old n          11 new n          14          10          10 T
+ increasing size of patch          11 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           15
+ Neighbohr id:           20
+ Neighbohr id:            9
+ increasing size of patch          17 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           25
+ increasing size of patch          15 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            6
+ increasing size of patch          18 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           24
+ increasing size of patch           8 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           12
+ increasing size of patch          15 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            6
+ increasing size of patch          15 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            9
+ increasing size of patch          11 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            6
+ increasing size of patch          24 export old n          11 new n          14          10          10 T
+ Neighbohr id:           18
+ increasing size of patch          11 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           20
+ increasing size of patch           8 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           23
+ increasing size of patch          24 export old n          11 new n          14          10          10 T
+ Neighbohr id:            5
+ increasing size of patch           4 export old n          11 new n          14          10          10 F
+ Neighbohr id:            8
+ increasing size of patch          11 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            7
+ increasing size of patch          11 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           10
+ increasing size of patch          24 export old n          11 new n          14          10          10 T
+ Neighbohr id:            3
+ increasing size of patch          15 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           16
+ increasing size of patch          15 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           19
+ increasing size of patch           4 export old n          11 new n          14          10          10 F
+ Neighbohr id:           10
+ increasing size of patch           4 export old n          11 new n          14          10          10 F
+ Neighbohr id:           23
+ increasing size of patch          11 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           17
+ increasing size of patch          11 ghosts old n          11 new n          14          10          10 F
+ increasing size of patch           9 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           14
+ Neighbohr id:           20
+ increasing size of patch          24 export old n          11 new n          14          10          10 F
+ Neighbohr id:            3
+ increasing size of patch          14 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           18
+ increasing size of patch          24 export old n          11 new n          14          10          10 F
+ Neighbohr id:            5
+ increasing size of patch           9 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           10
+ increasing size of patch          24 export old n          11 new n          14          10          10 F
+ Neighbohr id:           18
+ increasing size of patch           4 export old n          11 new n          14          10          10 F
+ Neighbohr id:           25
+ increasing size of patch          14 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           13
+ increasing size of patch           9 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            4
+ increasing size of patch          14 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            8
+ increasing size of patch          24 export old n          11 new n          14          10          10 F
+ Neighbohr id:           20
+ increasing size of patch           9 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           15
+ increasing size of patch           9 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            3
+ increasing size of patch          14 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           20
+ increasing size of patch          14 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            8
+ increasing size of patch           9 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            5
+ increasing size of patch          14 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           10
+ increasing size of patch           9 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           13
+ increasing size of patch          14 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           18
+ increasing size of patch           9 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           15
+ increasing size of patch          14 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           20
+ increasing size of patch          24 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           20
+ increasing size of patch          24 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           18
+ increasing size of patch          24 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            5
+ increasing size of patch          24 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            3
+ increasing size of patch          24 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            3
+ increasing size of patch          24 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            5
+ increasing size of patch          24 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           18
+ increasing size of patch          24 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           20
+ increasing size of patch           4 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           10
+ increasing size of patch           4 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            8
+ increasing size of patch           4 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            5
+ increasing size of patch           4 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           25
+ increasing size of patch           4 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            8
+ increasing size of patch           4 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           10
+ increasing size of patch           4 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           23
+ increasing size of patch           4 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           25
+ increasing size of patch          19 export old n          11 new n          14          10          10 T
+ Neighbohr id:           23
+ increasing size of patch          19 export old n          11 new n          14          10          10 T
+ Neighbohr id:           18
+ increasing size of patch          19 export old n          11 new n          14          10          10 T
+ Neighbohr id:           13
+ increasing size of patch          19 export old n          11 new n          14          10          10 T
+ Neighbohr id:           25
+ increasing size of patch          19 export old n          11 new n          14          10          10 F
+ Neighbohr id:           13
+ increasing size of patch          19 export old n          11 new n          14          10          10 F
+ Neighbohr id:           15
+ increasing size of patch          19 export old n          11 new n          14          10          10 F
+ Neighbohr id:           23
+ increasing size of patch          19 export old n          11 new n          14          10          10 F
+ Neighbohr id:           25
+ increasing size of patch          19 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           23
+ increasing size of patch          19 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           18
+ increasing size of patch          19 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           13
+ increasing size of patch          19 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           25
+ increasing size of patch          19 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           13
+ increasing size of patch          19 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           15
+ increasing size of patch          19 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           23
+ increasing size of patch          19 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           25
+ increasing size of patch          12 export old n          11 new n          14          10          10 T
+ Neighbohr id:           17
+ increasing size of patch          12 export old n          11 new n          14          10          10 T
+ Neighbohr id:           13
+ increasing size of patch          12 export old n          11 new n          14          10          10 T
+ Neighbohr id:            7
+ increasing size of patch          12 export old n          11 new n          14          10          10 T
+ Neighbohr id:           18
+ increasing size of patch          12 export old n          11 new n          14          10          10 F
+ Neighbohr id:            6
+ increasing size of patch          12 export old n          11 new n          14          10          10 F
+ Neighbohr id:            8
+ increasing size of patch          12 export old n          11 new n          14          10          10 F
+ Neighbohr id:           16
+ increasing size of patch          12 export old n          11 new n          14          10          10 F
+ Neighbohr id:           18
+ increasing size of patch          12 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           17
+ increasing size of patch          12 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           13
+ increasing size of patch          12 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            7
+ increasing size of patch          12 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           18
+ increasing size of patch          12 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            6
+ increasing size of patch          12 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            8
+ increasing size of patch          12 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           16
+ increasing size of patch          12 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           18
+ increasing size of patch          13 export old n          11 new n          14          10          10 T
+ Neighbohr id:           17
+ increasing size of patch          13 export old n          11 new n          14          10          10 T
+ Neighbohr id:           12
+ increasing size of patch          13 export old n          11 new n          14          10          10 T
+ Neighbohr id:            7
+ increasing size of patch          13 export old n          11 new n          14          10          10 T
+ Neighbohr id:           19
+ increasing size of patch          13 export old n          11 new n          14          10          10 F
+ Neighbohr id:            7
+ increasing size of patch          13 export old n          11 new n          14          10          10 F
+ Neighbohr id:            9
+ increasing size of patch          13 export old n          11 new n          14          10          10 F
+ Neighbohr id:           17
+ increasing size of patch          13 export old n          11 new n          14          10          10 F
+ Neighbohr id:           19
+ increasing size of patch          13 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           17
+ increasing size of patch          13 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           12
+ increasing size of patch          13 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:            7
+ increasing size of patch          13 ghosts old n          11 new n          14          10          10 T
+ Neighbohr id:           19
+ increasing size of patch          13 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            7
+ increasing size of patch          13 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:            9
+ increasing size of patch          13 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           17
+ increasing size of patch          13 ghosts old n          11 new n          14          10          10 F
+ Neighbohr id:           19
+ increasing size of patch           2 export old n          14 new n          18          13          13 T
+ Neighbohr id:            4
+ increasing size of patch          21 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           5 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            7
+ increasing size of patch          25 export old n         110 new n         146         109         109 T
+ Neighbohr id:           19
+ increasing size of patch          24 export old n          14 new n          18          13          13 T
+ Neighbohr id:           13
+ increasing size of patch          18 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:           12
+ increasing size of patch           7 export old n          14 new n          18          13          13 T
+ Neighbohr id:           15
+ increasing size of patch          11 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:           14
+ increasing size of patch          12 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          17 export old n         110 new n         146         109         109 T
+ Neighbohr id:           13
+ increasing size of patch          13 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          12 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           4 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          25 export old n          14 new n          18          13          13 T
+ Neighbohr id:           12
+ increasing size of patch           6 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            6
+ increasing size of patch           7 export old n         110 new n         146         109         109 T
+ Neighbohr id:            9
+ increasing size of patch          16 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          12 export old n          14 new n          18          13          13 T
+ Neighbohr id:            3
+ increasing size of patch          18 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:           14
+ increasing size of patch          22 export old n          14 new n          18          13          13 T
+ Neighbohr id:           19
+ increasing size of patch           8 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           4 export old n          14 new n          18          13          13 T
+ Neighbohr id:   1091125774
+ increasing size of patch           2 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:   1065353216
+ increasing size of patch          21 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          19 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          24 export old n         110 new n         146         109         109 T
+ Neighbohr id:           14
+ increasing size of patch          17 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           7 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          23 export old n          14 new n          18          13          13 T
+ Neighbohr id:           18
+ increasing size of patch           2 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           9 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:    498714714
+ increasing size of patch          23 export old n         110 new n         146         109         109 T
+ Neighbohr id:          901
+ increasing size of patch          22 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:    498714714
+ increasing size of patch          15 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          10 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            2
+ increasing size of patch          12 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           9 export old n         110 new n         146         109         109 T
+ Neighbohr id:           23
+ increasing size of patch          11 export old n         110 new n         146         109         109 T
+ Neighbohr id:            4
+ increasing size of patch           9 export old n         110 new n         146         109         109 T
+ Neighbohr id:           23
+ increasing size of patch           2 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           7 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           4 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:          107
+ increasing size of patch          15 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           1 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           9 export old n          14 new n          18          13          13 T
+ Neighbohr id:    498714714
+ increasing size of patch           7 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          25 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           3 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           9 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           3 export old n          14 new n          18          13          13 T
+ Neighbohr id:            1
+ increasing size of patch           9 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            5
+ increasing size of patch           8 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          11 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           7 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:    498714714
+ increasing size of patch           5 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           8 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           9 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           6 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          20 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:   1065353216
+ increasing size of patch          18 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          24 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          23 export old n         110 new n         146         109         109 T
+ Neighbohr id:   1065353216
+ increasing size of patch          20 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          16 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          23 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:    498714714
+ increasing size of patch          24 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          16 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           3 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          25 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           4 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           1 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           2 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           6 export old n         110 new n         146         109         109 T
+ Neighbohr id:           19
+ increasing size of patch           6 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          18 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          12 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           2 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           1 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          21 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          22 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           1 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           5 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          21 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          16 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           1 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           7 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          12 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           8 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          25 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          19 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          14 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          20 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           6 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          12 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          25 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           4 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          16 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          22 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          11 ghosts old n          18 new n          24          17          17 T
+ Neighbohr id:            0
+ increasing size of patch           7 export old n          18 new n          24          17          17 T
+ Neighbohr id:            0
+ increasing size of patch          11 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           4 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          17 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          23 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           8 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           2 export old n          14 new n          18          13          13 T
+ Neighbohr id:   1074957538
+ increasing size of patch           9 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          10 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          11 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          17 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           5 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          10 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           4 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          10 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           5 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          10 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          10 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          20 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          15 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          14 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           6 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           2 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          22 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          16 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          21 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           2 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          23 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          20 export old n          14 new n          18          13          13 T
+ Neighbohr id:   1084026197
+ increasing size of patch          14 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          10 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           9 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           8 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          13 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          18 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          13 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          13 export old n          14 new n          18          13          13 T
+ Neighbohr id:   2147483647
+ increasing size of patch          15 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          16 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          19 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          14 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          15 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          15 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          16 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          17 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          12 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           7 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          19 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          13 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:   1065353216
+ increasing size of patch           4 ghosts old n          18 new n          24          17          17 T
+ Neighbohr id:            0
+ increasing size of patch          10 export old n          18 new n          24          17          17 T
+ Neighbohr id:            0
+ increasing size of patch           9 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          14 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          14 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          18 export old n          14 new n          18          13          13 T
+ Neighbohr id:   1083596984
+ increasing size of patch          18 ghosts old n          18 new n          24          17          17 T
+ Neighbohr id:            0
+ increasing size of patch          24 export old n          18 new n          24          17          17 T
+ Neighbohr id:            0
+ increasing size of patch          16 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          25 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          15 ghosts old n          18 new n          24          17          17 T
+ Neighbohr id:            0
+ increasing size of patch           9 export old n          18 new n          24          17          17 T
+ Neighbohr id:            0
+ reducing size of patch          13 ghosts old n         146 new n         109          91          91 T
+ Neighbohr id:            0
+ increasing size of patch          22 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           2 export old n         110 new n         146         109         109 T
+ Neighbohr id:            6
+ increasing size of patch          19 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          13 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          13 export old n          14 new n          18          13          13 T
+ Neighbohr id:   1065353216
+ increasing size of patch          17 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           8 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:          108
+ increasing size of patch           3 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          16 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          20 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch           6 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           5 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           5 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          24 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          11 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:  -1082130432
+ increasing size of patch           1 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch           7 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          12 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          23 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:          905
+ increasing size of patch          22 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          14 ghosts old n          18 new n          24          17          17 T
+ Neighbohr id:            0
+ increasing size of patch          18 export old n          18 new n          24          17          17 T
+ Neighbohr id:   1074216171
+ increasing size of patch           4 ghosts old n          18 new n          24          17          17 T
+ Neighbohr id:            0
+ increasing size of patch          25 export old n          18 new n          24          17          17 T
+ Neighbohr id:            0
+ increasing size of patch          15 ghosts old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          20 ghosts old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ increasing size of patch          19 export old n          14 new n          18          13          13 T
+ Neighbohr id:            0
+ increasing size of patch          19 export old n         110 new n         146         109         109 T
+ Neighbohr id:            0
+ first finish at run time =   5.190    
+ task_t%statistics: stub
+ thread          15  arrived
+ task_t%statistics: stub
+ thread          10  arrived
+ task_t%statistics: stub
+ thread          14  arrived
+ task_t%statistics: stub
+ thread           8  arrived
+ task_t%statistics: stub
+ thread          11  arrived
+ task_t%statistics: stub
+ thread           9  arrived
+ task_t%statistics: stub
+ thread           0  arrived
+ task_t%statistics: stub
+ thread           6  arrived
+ task_t%statistics: stub
+ thread           4  arrived
+ task_t%statistics: stub
+ thread           7  arrived
+ task_t%statistics: stub
+ thread           3  arrived
+ task_t%statistics: stub
+ thread          13  arrived
+ task_t%statistics: stub
+ thread           5  arrived
+ task_t%statistics: stub
+ thread           1  arrived
+ task_t%statistics: stub
+ thread          12  arrived
+ task_t%statistics: stub
+ thread           2  arrived
+ wall time:  4.97 s,  143. mus/upd,  5.57E+05 updates/process,   1 process,    16 cores/process
+ at mpi%barrier
+ end dispatcher0_t%execute

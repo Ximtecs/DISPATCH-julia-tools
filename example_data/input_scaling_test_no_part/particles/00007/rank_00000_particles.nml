@@ -1,0 +1,250 @@
+&PARTICLES_NML
+ ID=23         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=991        ,1000       ,
+ /
+&PARTICLES_NML
+ ID=2          ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=987        ,1000       ,
+ /
+&PARTICLES_NML
+ ID=6          ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=1003       ,1002       ,
+ /
+&PARTICLES_NML
+ ID=18         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=997        ,1001       ,
+ /
+&PARTICLES_NML
+ ID=17         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=1021       ,999        ,
+ /
+&PARTICLES_NML
+ ID=3          ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=988        ,997        ,
+ /
+&PARTICLES_NML
+ ID=24         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=1022       ,999        ,
+ /
+&PARTICLES_NML
+ ID=1          ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=992        ,998        ,
+ /
+&PARTICLES_NML
+ ID=11         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=992        ,1003       ,
+ /
+&PARTICLES_NML
+ ID=4          ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=1016       ,1001       ,
+ /
+&PARTICLES_NML
+ ID=25         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=991        ,1000       ,
+ /
+&PARTICLES_NML
+ ID=22         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=1006       ,998        ,
+ /
+&PARTICLES_NML
+ ID=10         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=1001       ,997        ,
+ /
+&PARTICLES_NML
+ ID=21         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=997        ,1000       ,
+ /
+&PARTICLES_NML
+ ID=12         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=985        ,998        ,
+ /
+&PARTICLES_NML
+ ID=7          ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=998        ,1002       ,
+ /
+&PARTICLES_NML
+ ID=16         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=995        ,999        ,
+ /
+&PARTICLES_NML
+ ID=13         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=1007       ,1000       ,
+ /
+&PARTICLES_NML
+ ID=5          ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=1009       ,1003       ,
+ /
+&PARTICLES_NML
+ ID=19         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=986        ,1003       ,
+ /
+&PARTICLES_NML
+ ID=14         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=991        ,998        ,
+ /
+&PARTICLES_NML
+ ID=9          ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=1005       ,1001       ,
+ /
+&PARTICLES_NML
+ ID=15         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=1005       ,999        ,
+ /
+&PARTICLES_NML
+ ID=20         ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=1007       ,1000       ,
+ /
+&PARTICLES_NML
+ ID=8          ,
+ N_SPECIES=2          ,
+ DO_PARTICLES=F,
+ NV_PARTICLE_FIELDS=13         ,
+ IS_ELECTRON=T,F,
+ MASS= 2*1.00000000      ,
+ CHARGE= -1.00000000    ,  1.00000000    ,
+ M=1008       ,1002       ,
+ /
