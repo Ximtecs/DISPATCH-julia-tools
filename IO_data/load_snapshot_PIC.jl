@@ -16,7 +16,6 @@ function load_snapshot_PIC(Snapshot_meta :: Snapshot_metadata, INCLUDE_PARTICLES
         if INCLUDE_PARTICLES
             if n_patches == 0 || !DO_PARTICLES
                 @warn "Trying to include particles but no particles in snapshot"
-                return []
             end
         end
 
@@ -29,26 +28,28 @@ function load_snapshot_PIC(Snapshot_meta :: Snapshot_metadata, INCLUDE_PARTICLES
         all_nr = []
         all_ids = [] # patch ID for each particle
         all_pos = [] # Global position of each particle
-        if INCLUDE_PARTICLES
-            for i in 1:N_SPECIES
-                q   = zeros(Int32,   (3,n_particles[i]));
-                r   = zeros(Float32, (3,n_particles[i]));
-                p   = zeros(Float32, (3,n_particles[i]));
-                w   = zeros(Float32, (  n_particles[i]));
-                e   = zeros(Float32, (  n_particles[i]));
-                nr  = zeros(Int32,   (  n_particles[i]));   
-                ids = zeros(Int32,   (  n_particles[i]));
-                pos = zeros(Float32, (3,n_particles[i]));
+        if DO_PARTICLES
+            if INCLUDE_PARTICLES 
+                for i in 1:N_SPECIES
+                    q   = zeros(Int32,   (3,n_particles[i]));
+                    r   = zeros(Float32, (3,n_particles[i]));
+                    p   = zeros(Float32, (3,n_particles[i]));
+                    w   = zeros(Float32, (  n_particles[i]));
+                    e   = zeros(Float32, (  n_particles[i]));
+                    nr  = zeros(Int32,   (  n_particles[i]));   
+                    ids = zeros(Int32,   (  n_particles[i]));
+                    pos = zeros(Float32, (3,n_particles[i]));
 
-                push!(all_q,q)
-                push!(all_r,r)
-                push!(all_p,p)
-                push!(all_w,w)
-                push!(all_e,e)
-                push!(all_nr,nr)
-                push!(all_ids,ids)
-                push!(all_pos,pos)
-            end 
+                    push!(all_q,q)
+                    push!(all_r,r)
+                    push!(all_p,p)
+                    push!(all_w,w)
+                    push!(all_e,e)
+                    push!(all_nr,nr)
+                    push!(all_ids,ids)
+                    push!(all_pos,pos)
+                end 
+            end
         end
         patch_size = get_integer_patch_size(Snapshot_meta)
         mem_size = get_mem_size(Snapshot_meta)
