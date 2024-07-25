@@ -55,7 +55,7 @@ function get_patch_mem_offset(Snapshot_meta :: Snapshot_metadata, patch_params :
     position_relative_to_origin = patch_params.LLC_NAT .- Box_origin
 
     # Calculate the offset of the patch in terms of the number of patches from the origin
-    patches_offset = floor.(position_relative_to_origin ./ patch_float_size)
+    patches_offset = round.(position_relative_to_origin ./ patch_float_size)
 
     # Calculate the memory offset by multiplying the patches offset by the size of each patch in integer units
     mem_offset = Int.(patches_offset .* patch_int_size .+ 1)
