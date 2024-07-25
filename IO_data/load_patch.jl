@@ -93,7 +93,7 @@ function load_patch(Snapshot_meta::Snapshot_metadata, patch_ID::Int, var :: Stri
     #-------------------------------------------------------------------
     #---------- initialize the data array ----------------
     patch_size = get_integer_patch_size(Snapshot_meta)
-    data = zeros(Float32, patch_size... , NV)
+    data = zeros(Float32, patch_size...)
     #-----------------------------------------------------
     #---------- Open data file ----------------
     f = open(data_file,"r")
