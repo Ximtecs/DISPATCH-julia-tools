@@ -113,4 +113,6 @@ function plot_heatmaps(datasets, titles, indices, layout, size_;
         savefig(p, save_name * ".png")
     end
 
+    display(p)
+
 end
