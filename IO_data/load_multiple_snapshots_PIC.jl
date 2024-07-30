@@ -69,5 +69,5 @@ function load_multiple_snapshots_PIC(data_folder :: String, INCLUDE_PARTICLES ::
     all_pos = all_pos[sorted_indices]
 
 
-    return all_data, all_t, all_q, all_r, all_p, all_w, all_e, all_nr, all_ids, all_pos
+    return all_data, all_t, all_q, all_r, all_p, all_w, all_e, all_nr, all_pos, all_ids
 end
