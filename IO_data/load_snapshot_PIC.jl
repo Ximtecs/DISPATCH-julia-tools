@@ -146,6 +146,20 @@ function load_snapshot_PIC(Snapshot_meta :: Snapshot_metadata, INCLUDE_PARTICLES
             #--------------------------------------------------------------------------------
         end
 
+        if INCLUDE_PARTICLES
+            for j in 1:N_SPECIES
+                sorted_indices = sortperm(all_nr[j][:])
+                all_q[j] = all_q[j][:,sorted_indices]
+                all_r[j] = all_r[j][:,sorted_indices]
+                all_p[j] = all_p[j][:,sorted_indices]
+                all_w[j] = all_w[j][sorted_indices]
+                all_e[j] = all_e[j][sorted_indices]
+                all_nr[j] = all_nr[j][sorted_indices]
+                all_ids[j] = all_ids[j][sorted_indices]
+                all_pos[j] = all_pos[j][:,sorted_indices]
+            end
+        end
+
 
         return all_data, all_q, all_r, all_p, all_w, all_e, all_nr, all_pos, all_ids
 end
