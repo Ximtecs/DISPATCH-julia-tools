@@ -71,8 +71,9 @@ function animate_1D_plots(datasets, titles, t, layout, size_;
     if x_vals !== nothing 
         if typeof(x_vals) <: Array{<:Int} || typeof(x_vals) <: Array{<:AbstractFloat}
             for i = 1:length(datasets)
-                if length(x_vals) != length(datasets[i])
-                    error("Length of x_vals must be same length as each dataset - not the same in index ", i )
+                if length(x_vals) != length(datasets[i][:,1])
+                    println("len(x_vals) = ", length(x_vals), " len(dataset[:,i])", length(datasets[i][:,1]))
+                    error("err 1 - Length of x_vals must be same length as each dataset - not the same in index ", i )
                 end
             end
         else
@@ -81,8 +82,8 @@ function animate_1D_plots(datasets, titles, t, layout, size_;
 
             else
                 for i = 1:length(datasets)
-                    if length(x_vals[i]) != length(datasets[i])
-                        error("Length of x_vals must be same length as each dataset - not the same in index ", i )
+                    if length(x_vals[i]) != length(datasets[i][:,1])
+                        error("err 2 - Length of x_vals must be same length as each dataset - not the same in index ", i )
                     end
                 end
             end
@@ -150,6 +151,7 @@ function plot_1D_subplots(datasets, titles, layout, size_;
         if typeof(x_vals) <: Array{<:Int} || typeof(x_vals) <: Array{<:AbstractFloat}
             for i = 1:length(datasets)
                 if length(x_vals) != length(datasets[i])
+                    println("len(x_vals) = ", length(x_vals), " len(dataset[:,i])", length(datasets[:,i]))
                     error("Length of x_vals must be same length as each dataset - not the same in index ", i )
                 end
             end
