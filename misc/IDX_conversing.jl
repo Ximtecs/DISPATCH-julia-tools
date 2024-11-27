@@ -32,11 +32,32 @@ function get_idx_value(idx::IDX_NML, key::String)
         "RPHI" => :RPHI
     )
     
+    species_map = Dict(
+    "rho_q" => 15, "charge density" => 15,
+    "rho_e" => 16, "electron density" => 16, "rho_elec" => 16,
+    "rho_p" => 22, "proton density" => 22, "rho_prot" => 22, 
+    "v_e_x" => 17, "v_x_e" => 17, "v_x_elec" => 17, "electron velocity x" => 17,
+    "v_e_y" => 18, "v_y_e" => 18, "v_y_elec" => 18, "electron velocity y" => 18,
+    "v_e_z" => 19, "v_z_e" => 19, "v_z_elec" => 19, "electron velocity z" => 19,
+    "v_p_x" => 23, "v_x_p" => 23, "v_x_prot" => 23, "proton velocity x" => 23,
+    "v_p_y" => 24, "v_y_p" => 24, "v_y_prot" => 24, "proton velocity y" => 24,
+    "v_p_z" => 25, "v_z_p" => 25, "v_z_prot" => 25, "proton velocity z" => 25,
+    "p_e" => 20, "p_elec" => 20, "e_p" => 20,  "pressure electron" => 20, "pressure e" => 20, "electron pressure" => 20,
+    "p_p" => 26, "p_prot" => 26, "pressure proton" => 26, "pressure p" => 26, "proton pressure" => 26,
+    "e_e" => 21, "e_elec" => 21, "energy electron" => 21, "energy e" => 21, "electron energy" => 21,
+    "e_p" => 27, "e_prot" => 27, "energy proton" => 27, "energy p" => 27, "proton energy" => 27
+    )
+
+
     # Convert the key to the corresponding field name
     if haskey(field_map, key)
         field_name = field_map[key]
         return getfield(idx, field_name)
     else
-        error("Invalid key: $key")
+        if haskey(species_map, key)
+            return species_map[key]
+        else
+            error("Invalid key: $key")
+        end
     end
 end
