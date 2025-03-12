@@ -22,6 +22,27 @@ function create_heatmap_plot(data, title, min_val, max_val, title_font_size, cma
     )
 end
 
+# Create a function to generate the heatmap plot with customizable x and y axis labels and values
+function create_heatmap_plot(x, y, data, title, min_val, max_val, title_font_size, cmap_font_size, axis_font_size, xlabel, ylabel, show_labels, show_colorbar, show_ticks)
+    heatmap(
+        x, 
+        y, 
+        data, 
+        color=:viridis, 
+        title=title, 
+        clim=(min_val, max_val), 
+        xlabel=show_labels ? xlabel : "", 
+        ylabel=show_labels ? ylabel : "", 
+        titlefontsize=title_font_size, 
+        guidefontsize=axis_font_size,
+        tickfontsize=cmap_font_size,
+        colorbar=show_colorbar,
+        xticks=show_ticks ? :auto : :none,
+        yticks=show_ticks ? :auto : :none,
+    )
+end
+
+
 # Updated function to animate heatmap plots for multiple datasets
 function animate_heatmap_plots(datasets, titles, t, layout, size_; 
                                save_fig=false, save_name="animation", 
@@ -83,6 +104,7 @@ function plot_heatmaps(datasets, titles, indices, layout, size_;
     save_fig=false, save_name="heatmap",
     title_font_size=12, cmap_font_size=10, axis_font_size=10, 
     xlabels=[], ylabels=[], show_labels=true,
+    xaxis = [], yaxis=[], 
     show_colorbar=true, show_ticks=true,
     left_margin=10mm, right_margin=10mm, 
     top_margin=10mm, bottom_margin=10mm)
@@ -97,12 +119,21 @@ function plot_heatmaps(datasets, titles, indices, layout, size_;
 
     plots = []
     for j = 1:length(datasets)
-        push!(plots, create_heatmap_plot(datasets[j][:,:,indices[j]]', 
-                        titles[j], 
-                        minimum(datasets[j][:,:,indices[j]]), 
-                        maximum(datasets[j][:,:,indices[j]]), 
-                        title_font_size, cmap_font_size, 
-                        axis_font_size, xlabels[j], ylabels[j], show_labels, show_colorbar, show_ticks))
+        if isempty(xaxis)
+            push!(plots, create_heatmap_plot(datasets[j][:,:,indices[j]]', 
+                            titles[j], 
+                            minimum(datasets[j][:,:,indices[j]]), 
+                            maximum(datasets[j][:,:,indices[j]]), 
+                            title_font_size, cmap_font_size, 
+                            axis_font_size, xlabels[j], ylabels[j], show_labels, show_colorbar, show_ticks))
+        else
+            push!(plots, create_heatmap_plot(xaxis[j], yaxis[j], datasets[j][:,:,indices[j]]', 
+            titles[j], 
+            minimum(datasets[j][:,:,indices[j]]), 
+            maximum(datasets[j][:,:,indices[j]]), 
+            title_font_size, cmap_font_size, 
+            axis_font_size, xlabels[j], ylabels[j], show_labels, show_colorbar, show_ticks))
+        end 
     end
 
     p = plot(plots..., layout=layout, size=size_, 
