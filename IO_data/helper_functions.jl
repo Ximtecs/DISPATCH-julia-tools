@@ -22,8 +22,10 @@ function get_mem_size(Snapshot_meta :: Snapshot_metadata)
     patch_size = [Int(patch) for patch in patch_size]
     #n_patches = Snapshot_meta.n_patches
     Box_size = Snapshot_meta.SNAPSHOT.BOX
-
     patch_float_size = Snapshot_meta.PATCHES[1].SIZE
+
+
+
     patches_per_box = Box_size ./ patch_float_size
 
     patches_per_box = [Int(patch) for patch in patches_per_box]
@@ -36,12 +38,51 @@ function get_mem_size(Snapshot_meta :: Snapshot_metadata)
         end
     end
     mem_size[4] = Snapshot_meta.SNAPSHOT.NV
-
     return mem_size
 end
 #--------------------------------------------------------------------------------
 
+#----------------- Get size of memory array to store all patches for a single snapshot ----------------
+function get_mem_size(Snapshot_meta :: Snapshot_metadata, level::Int)
 
+    if (level < Snapshot_meta.LEVELMIN) || (level > Snapshot_meta.LEVELMAX)
+        error("Level out of range")
+    end
+
+    patch_size = get_integer_patch_size(Snapshot_meta)
+    patch_size = [Int(patch) for patch in patch_size]
+    #n_patches = Snapshot_meta.n_patches
+    Box_size = Snapshot_meta.SNAPSHOT.BOX
+
+    found_level = false
+    i = 1
+    while (! found_level)
+        patch_level = Snapshot_meta.PATCHES[i].LEVEL
+        if patch_level == level
+            found_level = true
+        else
+            i += 1
+        end
+    end
+    patch_float_size = Snapshot_meta.PATCHES[i].SIZE
+
+
+
+    patches_per_box = Box_size ./ patch_float_size
+
+    patches_per_box = [Int(patch) for patch in patches_per_box]
+    
+    mem_size = [1,1,1,1]
+
+    for i in 1:3
+        if patch_size[i] > 1
+            mem_size[i] = patch_size[i] * patches_per_box[i]
+        end
+    end
+    mem_size[4] = Snapshot_meta.SNAPSHOT.NV
+    return mem_size
+end
+#--------------------------------------------------------------------------------
 
 #----------------- Get the offset in memory for a given patch ----------------
 function get_patch_mem_offset(Snapshot_meta :: Snapshot_metadata, patch_params :: Patch_NML)
@@ -216,6 +257,11 @@ function move_file_pointer_patch(f::IO, Snapshot_meta::Snapshot_metadata, n_patc
 end
 #--------------------------------------------------------------------------------
 
+
+function move_file_pointer_skip(f::IO, Snapshot_meta::Snapshot_metadata)
+    total_size, total_size_in_bytes = get_patch_size(Snapshot_meta)
+    seek(f, position(f) + total_size_in_bytes)
+end
 
 function move_file_pointer_var(f::IO, Snapshot_meta::Snapshot_metadata, n_var::Int)
     total_size, total_size_in_bytes = get_patch_size(Snapshot_meta)
