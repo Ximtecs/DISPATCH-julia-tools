@@ -87,6 +87,7 @@ struct Patch_NML
     NCELL::Vector{Int}
     N::Vector{Int}
     NW::Int
+    NV::Int
     VELOCITY::Vector{Float64} 
     QUALITY::Float64
     MESH_TYPE::Int
@@ -102,15 +103,13 @@ struct Patch_NML
     EROT2::Vector{Float64}
     EROT3::Vector{Float64}
     NBOR_NML:: NBOR_NML # list of neighbors
-    DATA_POS::Int # position in the data file
-    DATA_FILE::String # data file
+    DATA_POS::Int       # position in the data file
+    DATA_FILE::String   # data file
 end
 
 struct Particles_NML
     ID::Int
     N_SPECIES::Int
-    DO_PARTICLES::Bool
-    NV_PARTICLE_FIELDS::Int
     IS_ELECTRON::Vector{Bool}
     MASS::Vector{Float64}
     CHARGE::Vector{Float64}
@@ -124,11 +123,19 @@ struct Snapshot_metadata
     SNAPSHOT:: SNAPSHOT_NML
     IDX :: IDX_NML
     n_patches :: Int
+    n_pic_patches :: Int
     PATCHES :: Vector{Patch_NML}
-    n_particle_patches :: Int
-    N_SPECIES :: Int
-    N_PARTICLES :: Vector{Int}
-    PARTICLES :: Vector{Particles_NML}
     folder :: String
+    DO_PIC :: Bool
+    DO_PARTICLES :: Bool
+    NV_PIC :: Int
+    NV_MHD :: Int
+    N_PARTICLES :: Vector{Int}
+    N_PARTICLE_PATCHES :: Int
+    PARTICLE_FOLDER :: String
+    PARTICLES :: Vector{Particles_NML}
+    SYSTEM :: String # unit syste,
+    LEVELMIN :: Int
+    LEVELMAX :: Int
 end 
 
