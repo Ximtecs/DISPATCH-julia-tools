@@ -2,7 +2,7 @@ using Plots
 using Printf
 using Measures
 
-# Create a function to generate the 1D plot
+# Create a function to generate the 1D plot without vlines
 function create_1D_plot!(p, data, x, label, min_val, max_val, title_font_size, axis_font_size, xlabel, ylabel, show_labels, show_ticks, show_legend)
     if x === nothing
         plot!(
@@ -37,6 +37,15 @@ function create_1D_plot!(p, data, x, label, min_val, max_val, title_font_size, a
     end
 end
 
+# Create a function to generate the 1D plot with vlines
+function create_1D_plot!(p, data, x, label, min_val, max_val, title_font_size, axis_font_size, xlabel, ylabel, show_labels, show_ticks, show_legend, vlines)
+    create_1D_plot!(p, data, x, label, min_val, max_val, title_font_size, axis_font_size, xlabel, ylabel, show_labels, show_ticks, show_legend)
+    if isempty(vlines)
+        return
+    end
+    vline!(p, vlines, color=:black)
+end
+
 # Updated function to animate 1D plots for multiple datasets
 function animate_1D_plots(datasets, titles, t, layout, size_; 
                           save_fig=false, save_name="animation", 
@@ -45,7 +54,8 @@ function animate_1D_plots(datasets, titles, t, layout, size_;
                           labels=[], show_labels=true, show_ticks=true,
                           subplot_indices=nothing, show_legend=true, x_vals=nothing,
                           left_margin=10mm, right_margin=10mm, 
-                          top_margin=10mm, bottom_margin=10mm)
+                          top_margin=10mm, bottom_margin=10mm,
+                          vlines=[])
     
     # Calculate global min and max across all datasets for consistent y-axis scaling
     n_dataset = length(datasets)
@@ -105,10 +115,10 @@ function animate_1D_plots(datasets, titles, t, layout, size_;
             x = x_vals === nothing ? nothing : ( (typeof(x_vals) <: Array{<:Int} || typeof(x_vals) <: Array{<:AbstractFloat}) ? x_vals : x_vals[j])
             if const_ylim
                 create_1D_plot!(p[subplot_indices[j]], datasets[j][:,i], x, labels[j], global_min[j], global_max[j], 
-                                title_font_size, axis_font_size, xlabels[j], ylabels[j], show_labels, show_ticks, show_legend)
+                                title_font_size, axis_font_size, xlabels[j], ylabels[j], show_labels, show_ticks, show_legend, vlines)
             else
                 create_1D_plot!(p[subplot_indices[j]], datasets[j][:,i], x, labels[j], minimum(datasets[j][:,i]), maximum(datasets[j][:,i]), 
-                                title_font_size, axis_font_size, xlabels[j], ylabels[j], show_labels, show_ticks, show_legend)
+                                title_font_size, axis_font_size, xlabels[j], ylabels[j], show_labels, show_ticks, show_legend, vlines)
             end
         end
     end
@@ -129,7 +139,8 @@ function plot_1D_subplots(datasets, titles, layout, size_;
     show_ticks=true,
     subplot_indices=nothing, show_legend=true,
     left_margin=10mm, right_margin=10mm, 
-    top_margin=10mm, bottom_margin=10mm)
+    top_margin=10mm, bottom_margin=10mm,
+    vlines=[])
 
     # Handle default axis labels if not provided
     if isempty(xlabels)
@@ -185,11 +196,11 @@ function plot_1D_subplots(datasets, titles, layout, size_;
         if indices === nothing 
             create_1D_plot!(p[subplot_indices[j]], datasets[j], x, labels[j], 
                             minimum(datasets[j]), maximum(datasets[j]), 
-                            title_font_size, axis_font_size, xlabels[j], ylabels[j], show_labels, show_ticks, show_legend)
+                            title_font_size, axis_font_size, xlabels[j], ylabels[j], show_labels, show_ticks, show_legend, vlines)
         else
             create_1D_plot!(p[subplot_indices[j]], datasets[j][:,indices[j]], x, labels[j], 
                             minimum(datasets[j][:,indices[j]]), maximum(datasets[j][:,indices[j]]), 
-                            title_font_size, axis_font_size, xlabels[j], ylabels[j], show_labels, show_ticks, show_legend)
+                            title_font_size, axis_font_size, xlabels[j], ylabels[j], show_labels, show_ticks, show_legend, vlines)
         end
     end
 
@@ -199,3 +210,76 @@ function plot_1D_subplots(datasets, titles, layout, size_;
 
     display(p)
 end
+
+
+function plot_energi_PIC(data, times, system) 
+
+    Btot = sqrt.(data[:,:, 6, :].^2 .+ data[:,:, 7, :].^2 .+ data[:,:, 8, :].^2)
+    Etot = sqrt.(data[:,:, 9, :].^2 .+ data[:,:, 10, :].^2 .+ data[:,:, 11, :].^2)
+
+    if system == "HL"
+        B_E = sum(Btot.^2 / (2), dims=(1, 2))[1, 1, 2:end]
+        E_E = sum(Etot.^2 / (2), dims=(1, 2))[1, 1, 2:end]
+    elseif system == "CGS"
+        B_E = sum(Btot.^2 / (8 * pi), dims=(1, 2))[1, 1, 2:end]
+        E_E = sum(Etot.^2 / (8 * pi), dims=(1, 2))[1, 1, 2:end]
+    else
+        error("Invalid system")
+    end 
+
+    e_kin_elec = sum(data[:,:,21,:], dims=(1,2))[1,1,2:end]
+    e_kin_prot = sum(data[:,:,27,:], dims=(1,2))[1,1,2:end];
+    rho_tot = sum(data[:,:, 1, :], dims=(1, 2))[1, 1, 2:end]
+    total_E = B_E + E_E + e_kin_elec + e_kin_prot
+    rel_error_max_e = (maximum(total_E) - total_E[1]) / (total_E[1]) * 100
+    rel_error_min_e = (minimum(total_E) - total_E[1]) / (total_E[1]) * 100
+
+    rel_error_max_rho = (maximum(rho_tot) - rho_tot[1]) / (rho_tot[1]) * 100
+    rel_error_min_rho = (minimum(rho_tot) - rho_tot[1]) / (rho_tot[1]) * 100
+
+    p = plot(times[2:end], total_E .- total_E[1], label="E_tot", size=(1200, 600), title="Relative energi error")
+    plot!(times[2:end], B_E .- B_E[1], label="B_E")
+    plot!(times[2:end], E_E .- E_E[1], label="E_E")
+    plot!(times[2:end], e_kin_elec .- e_kin_elec[1], label="e_kin_elec")
+    plot!(times[2:end], e_kin_prot .- e_kin_prot[1], label="e_kin_prot")
+
+    return p, rel_error_max_e, rel_error_min_e, rel_error_max_rho, rel_error_min_rho
+end 
+
+
+function plot_energi_MHD(data, times, system) 
+
+    Btot = sqrt.(data_MHD[:,:,6,:].^2 .+ data_MHD[:,:,7,:].^2 .+ data_MHD[:,:,8,:].^2)
+    Etot = sqrt.(data_MHD[:,:,9,:].^2 .+ data_MHD[:,:,10,:].^2 .+ data_MHD[:,:,11,:].^2)
+
+
+    if system == "HL"
+        B_E = sum(Btot.^2 / (2), dims=(1, 2))[1, 1, 2:end]
+        E_E = sum(Etot.^2 / (2), dims=(1, 2))[1, 1, 2:end]
+    elseif system == "CGS"
+        B_E = sum(Btot.^2 / (8 * pi), dims=(1, 2))[1, 1, 2:end]
+        E_E = sum(Etot.^2 / (8 * pi), dims=(1, 2))[1, 1, 2:end]
+    else
+        error("Invalid system")
+    end 
+
+    kin_E = sum(0.5 ./ data_MHD[:,:,1,:] .* (data_MHD[:,:,2,:].^2 .+ data_MHD[:,:,3,:].^2 .+ data_MHD[:,:,4,:].^2),dims=(1,2))[1,1,2:end]
+    internal_E = sum(data_MHD[:,:,5,:],dims=(1,2 ))[1,1,2:end]
+
+    rho_tot = sum(data_MHD[:,:,1,:],dims=(1,2))[1,1,2:end]
+    total_E = B_E + E_E + kin_E + internal_E 
+    rel_error_max_e = (maximum(total_E) - total_E[1]) / (total_E[1]) * 100 
+    rel_error_min_e = (minimum(total_E) - total_E[1]) / (total_E[1]) * 100 
+
+
+    rel_error_max_rho = (maximum(rho_tot) - rho_tot[1]) / (rho_tot[1]) * 100 
+    rel_error_min_rho = (minimum(rho_tot) - rho_tot[1]) / (rho_tot[1]) * 100 
+
+
+    p = plot(times_MHD[2:end], total_E .- total_E[1], label=data_folder, size=(1200,600))
+    plot!(times_MHD[2:end], B_E .- B_E[1], label="B_E")
+    plot!(times_MHD[2:end], E_E .- E_E[1], label="E_E")
+    plot!(times_MHD[2:end], kin_E .- kin_E[1], label="kin_E")
+    plot!(times_MHD[2:end], internal_E .- internal_E[1], label="int_E")
+    return p, rel_error_max_e, rel_error_min_e, rel_error_max_rho, rel_error_min_rho
+end 
