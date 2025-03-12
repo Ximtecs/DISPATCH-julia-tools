@@ -129,12 +129,15 @@ function print_info(metadata::Snapshot_metadata)
     print_info(metadata.SNAPSHOT)
     println("\nIDX:               ")
     print_info(metadata.IDX)
+    println("        NV_MHD:      ", metadata.NV_MHD)
     println("\nNumber of PATCHES: ", metadata.n_patches)
-    println("Folder:              ", metadata.folder)
+    println("\n Folder:           ", metadata.folder)
     
-    if metadata.IO.DO_PIC && metadata.n_particle_patches > 0
-    println("\n#PIC Patches:      ", metadata.n_particle_patches)
-    println("Number of Species:   ", metadata.N_SPECIES)
-    println("#Particles           ", join(metadata.N_PARTICLES, ", "))
+    if metadata.DO_PIC
+    println("        PIC PATCHES: ", metadata.n_pic_patches)
+    println("        NV_PIC:      ", metadata.NV_PIC)
+        if metadata.DO_PARTICLES
+            println("\nParticle Folder:   ", metadata.PARTICLE_FOLDER)
+        end
     end
 end

@@ -1,21 +1,46 @@
 include("helper_functions.jl")
 include("../misc/IDX_conversing.jl")
 
-function load_snapshot(Snapshot_meta :: Snapshot_metadata)
+function load_snapshot(Snapshot_meta :: Snapshot_metadata, load_pic :: Bool; use_level::Union{Nothing, Int} = nothing)
+    
+    level = isnothing(use_level) ? Snapshot_meta.LEVELMIN : use_level
     #--------- basic information about the snapshot and the patches ------
     n_patches = Snapshot_meta.n_patches
     #--------------------------------------------------------------------
     #---------- allocate array -------------------------------
     patch_size = get_integer_patch_size(Snapshot_meta)
-    mem_size = get_mem_size(Snapshot_meta)
+    mem_size = get_mem_size(Snapshot_meta, level)
     all_data = zeros(Float32,mem_size...)
     #-----------------------------------------------------------------
     #---------- if patches have different data files load them each individually ------------
     data_files = [patch.DATA_FILE for patch in Snapshot_meta.PATCHES]
     if length(unique(data_files)) > 1
-        error("loading snapshot with different data files not implemented yet")
-        #TODO - should be quite similar to below but loop through unique(data_files) list
-        #----- should create a list of each patch in that file and loop through it 
+        for data_file in unique(data_files)
+            f = open(data_file,"r")
+            for i in 1:n_patches
+                patch = Snapshot_meta.PATCHES[i]
+                if (patch.DATA_FILE != data_file)
+                    continue
+                end
+                if (patch.LEVEL != level)
+                    move_file_pointer_skip(f, Snapshot_meta)
+                    continue
+                end 
+                mem_offset = get_patch_mem_offset(Snapshot_meta,patch)
+                if (load_pic && patch.KIND != "PIC")
+                    move_file_pointer_skip(f, Snapshot_meta)
+                    continue
+                elseif (!load_pic && patch.KIND == "PIC")
+                    move_file_pointer_skip(f, Snapshot_meta)
+                    continue
+                end
+                data = @view all_data[mem_offset[1]:mem_offset[1]+patch_size[1]-1,mem_offset[2]:mem_offset[2]+patch_size[2]-1,mem_offset[3]:mem_offset[3]+patch_size[3]-1,:]
+                read!(f, data)
+            end 
+            close(f)
+        end
+
+
     else 
         #------ if patches have same data file juust go through it to load all patches --------
         #---------- Open data file ----------------
@@ -27,6 +52,25 @@ function load_snapshot(Snapshot_meta :: Snapshot_metadata)
             patch = Snapshot_meta.PATCHES[i]
             mem_offset = get_patch_mem_offset(Snapshot_meta,patch)
             #------------------------------------------------------------
+
+            #println("Loading patch: ", patch.ID, " kind = ", patch.KIND)
+            #println("loading data... f position: ", position(f)) 
+
+            if (patch.LEVEL != level)
+                move_file_pointer_skip(f, Snapshot_meta)
+                continue
+            end 
+            if (load_pic && patch.KIND != "PIC")
+                move_file_pointer_skip(f, Snapshot_meta)
+                continue
+            elseif (!load_pic && patch.KIND == "PIC")
+                move_file_pointer_skip(f, Snapshot_meta)
+                continue
+            end
+       
+             
+            #println("mem_offset = ", mem_offset)
+            #println("patch_size = ", patch_size)
             #---------- get subview of global memory and load data directly into global array --------------
             data = @view all_data[mem_offset[1]:mem_offset[1]+patch_size[1]-1,mem_offset[2]:mem_offset[2]+patch_size[2]-1,mem_offset[3]:mem_offset[3]+patch_size[3]-1,:]
             #------------------------------------------------------------------------------------------------
@@ -38,10 +82,101 @@ function load_snapshot(Snapshot_meta :: Snapshot_metadata)
         #--------------------------------------------------------------------------------
     end
     #--------------------------------------------------------------------------------------------
-
-
     return all_data
 end 
+
+
+function load_snapshot(Snapshot_meta :: Snapshot_metadata, load_pic :: Bool, llc :: Vector{Int}, urc:: Vector{Int}; use_level::Union{Nothing, Int} = nothing)
+    
+    level = isnothing(use_level) ? Snapshot_meta.LEVELMIN : use_level
+    #--------- basic information about the snapshot and the patches ------
+    n_patches = Snapshot_meta.n_patches
+    #--------------------------------------------------------------------
+    #---------- allocate array -------------------------------
+    patch_size = get_integer_patch_size(Snapshot_meta)
+    mem_size = get_mem_size(Snapshot_meta, level)
+
+    mem_size_red = urc .- llc .+ 1
+    mem_size[1:3] = mem_size_red
+    all_data = zeros(Float32,mem_size...)
+    #-----------------------------------------------------------------
+    #---------- if patches have different data files load them each individually ------------
+    data_files = [patch.DATA_FILE for patch in Snapshot_meta.PATCHES]
+    if length(unique(data_files)) > 1
+        for data_file in unique(data_files)
+            f = open(data_file,"r")
+            for i in 1:n_patches
+                patch = Snapshot_meta.PATCHES[i]
+                if (patch.DATA_FILE != data_file)
+                    continue
+                end
+                if (patch.LEVEL != level)
+                    move_file_pointer_skip(f, Snapshot_meta)
+                    continue
+                end 
+                mem_offset = get_patch_mem_offset(Snapshot_meta,patch)
+                mem_offset = mem_offset .- llc .+ 1
+                if (load_pic && patch.KIND != "PIC")
+                    move_file_pointer_skip(f, Snapshot_meta)
+                    continue
+                elseif (!load_pic && patch.KIND == "PIC")
+                    move_file_pointer_skip(f, Snapshot_meta)
+                    continue
+                end
+                data = @view all_data[mem_offset[1]:mem_offset[1]+patch_size[1]-1,mem_offset[2]:mem_offset[2]+patch_size[2]-1,mem_offset[3]:mem_offset[3]+patch_size[3]-1,:]
+                read!(f, data)
+            end 
+            close(f)
+        end
+
+
+    else 
+        #------ if patches have same data file juust go through it to load all patches --------
+        #---------- Open data file ----------------
+        data_file = data_files[1]
+        f = open(data_file,"r")
+        #-----------------------------------------
+        for i in 1:n_patches
+            #--------- get patch offset in memory -----------------------
+            patch = Snapshot_meta.PATCHES[i]
+            mem_offset = get_patch_mem_offset(Snapshot_meta,patch)
+            mem_offset = mem_offset .- llc .+ 1
+            #------------------------------------------------------------
+
+            #println("Loading patch: ", patch.ID, " kind = ", patch.KIND)
+            #println("loading data... f position: ", position(f)) 
+
+            if (patch.LEVEL != level)
+                move_file_pointer_skip(f, Snapshot_meta)
+                continue
+            end 
+            if (load_pic && patch.KIND != "PIC")
+                move_file_pointer_skip(f, Snapshot_meta)
+                continue
+            elseif (!load_pic && patch.KIND == "PIC")
+                move_file_pointer_skip(f, Snapshot_meta)
+                continue
+            end
+       
+             
+            #println("mem_offset = ", mem_offset)
+            #println("patch_size = ", patch_size)
+            #---------- get subview of global memory and load data directly into global array --------------
+            data = @view all_data[mem_offset[1]:mem_offset[1]+patch_size[1]-1,mem_offset[2]:mem_offset[2]+patch_size[2]-1,mem_offset[3]:mem_offset[3]+patch_size[3]-1,:]
+            #------------------------------------------------------------------------------------------------
+            #----------- Read the data for the patch  --------------------
+            read!(f, data)
+            #-----------------------------------------------------------
+        end 
+        close(f)
+        #--------------------------------------------------------------------------------
+    end
+    #--------------------------------------------------------------------------------------------
+    return all_data
+end 
+
+
+
 
 
 function load_snapshot(Snapshot_meta :: Snapshot_metadata, var :: String)
